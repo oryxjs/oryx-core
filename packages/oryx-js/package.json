@@ -1,0 +1,28 @@
+{
+  "name": "@oryxjs/oryx-js",
+  "version": "1.0.0",
+  "description": "Client wrapper for oryx core.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oryxjs/oryx-core.git"
+  },
+  "dependencies": {
+    "@medusajs/medusa-js": "^1.2.5",
+    "qs": "^6.11.0",
+    "@oryxjs/oryx": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsconfig": "*",
+    "eslint-config": "*"
+  },
+  "author": "Aboozaid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oryxjs/oryx-core/issues"
+  },
+  "homepage": "https://github.com/oryxjs/oryx-core#readme"
+}

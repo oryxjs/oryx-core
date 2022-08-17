@@ -1,0 +1,35 @@
+{
+  "name": "oryx-core",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oryxjs/oryx-core.git"
+  },
+  "author": "Aboozaid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oryxjs/oryx-core/issues"
+  },
+  "homepage": "https://github.com/oryxjs/oryx-core#readme",
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "npm@8.15.0",
+  "dependencies": {
+    "@changesets/cli": "^2.24.3"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "eslint-config",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "files": [
+    "eslint-preset.js"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.18.10",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint-config-universe": "^11.1.0",
+    "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-import-resolver-typescript": "^3.4.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-helpers": "^1.2.1"
+  }
+}
