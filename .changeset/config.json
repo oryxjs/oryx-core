@@ -1,11 +1,11 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
-  "changelog": ["@changesets/cli/changelog", { "repo": "oryxjs/oryx-core" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "oryxjs/oryx-core" }],
   "commit": false,
   "fixed": [],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": ["@oryxjs/oryx-js", "@oryxjs/oryx-react"]
 }

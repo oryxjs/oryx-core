@@ -982,6 +982,15 @@
   dependencies:
     "@changesets/types" "^5.1.0"
 
+"@changesets/changelog-github@^0.4.6":
+  "integrity" "sha512-ahR/+o3OPodzfG9kucEMU/tEtBgwy6QoJiWi1sDBPme8n3WjT6pBlbhqNYpWAJKilomwfjBGY0MTUTs6r9d1RQ=="
+  "resolved" "https://registry.npmjs.org/@changesets/changelog-github/-/changelog-github-0.4.6.tgz"
+  "version" "0.4.6"
+  dependencies:
+    "@changesets/get-github-info" "^0.5.1"
+    "@changesets/types" "^5.1.0"
+    "dotenv" "^8.1.0"
+
 "@changesets/cli@^2.24.3":
   "integrity" "sha512-okhRV+0WCQJa2Kmil/WvN5TK1o3+1JYSjrsGHqhjv+PYcDgDDgQ6I9J9OMBO9lfmNIpN7xSO80/BzxgvReO4Wg=="
   "resolved" "https://registry.npmjs.org/@changesets/cli/-/cli-2.24.3.tgz"
@@ -1051,6 +1060,14 @@
     "chalk" "^2.1.0"
     "fs-extra" "^7.0.1"
     "semver" "^5.4.1"
+
+"@changesets/get-github-info@^0.5.1":
+  "integrity" "sha512-w2yl3AuG+hFuEEmT6j1zDlg7GQLM/J2UxTmk0uJBMdRqHni4zXGe/vUlPfLom5KfX3cRfHc0hzGvloDPjWFNZw=="
+  "resolved" "https://registry.npmjs.org/@changesets/get-github-info/-/get-github-info-0.5.1.tgz"
+  "version" "0.5.1"
+  dependencies:
+    "dataloader" "^1.4.0"
+    "node-fetch" "^2.5.0"
 
 "@changesets/get-release-plan@^3.0.14":
   "integrity" "sha512-xzSfeyIOvUnbqMuQXVKTYUizreWQfICwoQpvEHoePVbERLocc1tPo5lzR7dmVCFcaA/DcnbP6mxyioeq+JuzSg=="
@@ -1578,7 +1595,7 @@
     "qs" "^6.10.3"
     "retry-axios" "^2.6.0"
 
-"@medusajs/medusa@^1.3.5", "@medusajs/medusa@^1.3.X":
+"@medusajs/medusa@^1.3.5", "@medusajs/medusa@^1.3.x", "@medusajs/medusa@^1.3.X":
   "integrity" "sha512-jLAdK9DodN3EP5aaMcTAeio3K+IMi990dt3t8SxgveJzzPPL7nY1FsGZ0mIyQgGEyvOWlF+rVDTYznaB2HCbPQ=="
   "resolved" "https://registry.npmjs.org/@medusajs/medusa/-/medusa-1.3.5.tgz"
   "version" "1.3.5"
@@ -1777,24 +1794,39 @@
   "resolved" "https://registry.npmjs.org/@oclif/screen/-/screen-1.0.4.tgz"
   "version" "1.0.4"
 
+"@oryxjs/oryx-eslint-config@*", "@oryxjs/oryx-eslint-config@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx-eslint-config":
+  "resolved" "file:packages/oryx-eslint-config"
+  "version" "1.0.0"
+  dependencies:
+    "@babel/core" "^7.18.10"
+    "@typescript-eslint/eslint-plugin" "^5.33.0"
+    "@typescript-eslint/parser" "^5.33.0"
+    "babel-plugin-module-resolver" "^4.1.0"
+    "eslint-config-universe" "^11.1.0"
+    "eslint-import-resolver-babel-module" "^5.3.1"
+    "eslint-import-resolver-typescript" "^3.4.0"
+    "eslint-plugin-import" "^2.26.0"
+    "eslint-plugin-import-helpers" "^1.2.1"
+
 "@oryxjs/oryx-js@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx-js":
   "resolved" "file:packages/oryx-js"
-  "version" "1.0.0"
+  "version" "0.0.0"
   dependencies:
     "@medusajs/medusa-js" "^1.2.5"
-    "@oryxjs/oryx" "^1.0.0"
+    "@oryxjs/oryx" "*"
     "qs" "^6.11.0"
 
-"@oryxjs/oryx@^1.0.0", "@oryxjs/oryx@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx":
+"@oryxjs/oryx-react@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx-react":
+  "resolved" "file:packages/oryx-react"
+  "version" "0.0.0"
+
+"@oryxjs/oryx-tsconfig@*", "@oryxjs/oryx-tsconfig@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx-tsconfig":
+  "resolved" "file:packages/oryx-tsconfig"
+  "version" "1.0.0"
+
+"@oryxjs/oryx@*", "@oryxjs/oryx@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx":
   "resolved" "file:packages/oryx"
   "version" "1.0.0"
-  dependencies:
-    "@medusajs/medusa" "^1.3.5"
-    "class-transformer" "^0.5.1"
-    "medusa-core-utils" "^1.1.31"
-    "medusa-interfaces" "^1.3.2"
-    "reflect-metadata" "^0.1.13"
-    "typeorm" "^0.2.36"
 
 "@pkgr/utils@^2.3.0":
   "integrity" "sha512-7dIJ9CRVzBnqyEl7diUHPUFJf/oty2SeoVzcMocc5PeOUDK9KGzvgIBjGRRzzlRDaOjh3ADwH0WeibQvi3ls2Q=="
@@ -3780,6 +3812,11 @@
     "whatwg-mimetype" "^2.3.0"
     "whatwg-url" "^8.0.0"
 
+"dataloader@^1.4.0":
+  "integrity" "sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw=="
+  "resolved" "https://registry.npmjs.org/dataloader/-/dataloader-1.4.0.tgz"
+  "version" "1.4.0"
+
 "debug@^2.6.9":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
@@ -4002,7 +4039,7 @@
   dependencies:
     "is-obj" "^2.0.0"
 
-"dotenv@^8.2.0":
+"dotenv@^8.1.0", "dotenv@^8.2.0":
   "integrity" "sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g=="
   "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
   "version" "8.6.0"
@@ -4312,19 +4349,6 @@
     "eslint-plugin-prettier" "^4.0.0"
     "eslint-plugin-react" "^7.30.0"
     "eslint-plugin-react-hooks" "^4.5.0"
-
-"eslint-config@*", "eslint-config@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/eslint-config":
-  "resolved" "file:packages/eslint-config"
-  "version" "0.0.1"
-  dependencies:
-    "@babel/core" "^7.18.10"
-    "@typescript-eslint/eslint-plugin" "^5.33.0"
-    "@typescript-eslint/parser" "^5.33.0"
-    "eslint-config-universe" "^11.1.0"
-    "eslint-import-resolver-babel-module" "^5.3.1"
-    "eslint-import-resolver-typescript" "^3.4.0"
-    "eslint-plugin-import" "^2.26.0"
-    "eslint-plugin-import-helpers" "^1.2.1"
 
 "eslint-import-resolver-babel-module@^5.3.1":
   "integrity" "sha512-WomQAkjO7lUNOdU3FG2zgNgylkoAVUmaw04bHgSpM9QrMWuOLLWa2qcP6CrsBd4VWuLRbUPyzrgBc9ZQIx9agw=="
@@ -6868,7 +6892,7 @@
     "@hapi/joi" "^16.1.8"
     "joi-objectid" "^3.0.1"
 
-"medusa-core-utils@^1.1.31":
+"medusa-core-utils@^1.1.31", "medusa-core-utils@^1.1.x":
   "integrity" "sha512-nMAmdjm2HoizOskSOyK/KK7dJ3ccC86+dPbT5Q4AeJ9bTJVCTOFnkUMEScuSM5pXx1y8k+yxXRBvrv/Thh2OTw=="
   "resolved" "https://registry.npmjs.org/medusa-core-utils/-/medusa-core-utils-1.1.31.tgz"
   "version" "1.1.31"
@@ -6889,7 +6913,7 @@
     "openapi-types" "^10.0.0"
     "webpack" "^5.0.0"
 
-"medusa-interfaces@^1.2.1", "medusa-interfaces@^1.3.2", "medusa-interfaces@1.3.2":
+"medusa-interfaces@^1.2.1", "medusa-interfaces@^1.3.x", "medusa-interfaces@1.3.2":
   "integrity" "sha512-UVi8NiYtv8JzSvJiPHTXfsqW1UBNkBaogIqgr6FYDpHvvuFLJ20aFew2MRUa/TYPgLKTa7KI6QoeKvZH1krgPg=="
   "resolved" "https://registry.npmjs.org/medusa-interfaces/-/medusa-interfaces-1.3.2.tgz"
   "version" "1.3.2"
@@ -7223,7 +7247,7 @@
   "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-4.3.0.tgz"
   "version" "4.3.0"
 
-"node-fetch@^2.6.7":
+"node-fetch@^2.5.0", "node-fetch@^2.6.7":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   "version" "2.6.7"
@@ -7500,10 +7524,6 @@
     "log-symbols" "^4.1.0"
     "strip-ansi" "^6.0.0"
     "wcwidth" "^1.0.1"
-
-"oryx-react@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/oryx-react":
-  "resolved" "file:packages/oryx-react"
-  "version" "0.1.0"
 
 "os-tmpdir@~1.0.2":
   "integrity" "sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g=="
@@ -8012,10 +8032,17 @@
   "resolved" "https://registry.npmjs.org/punycode/-/punycode-1.3.2.tgz"
   "version" "1.3.2"
 
-"qs@^6.10.3", "qs@^6.11.0", "qs@6.10.3":
+"qs@^6.10.3", "qs@6.10.3":
   "integrity" "sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ=="
   "resolved" "https://registry.npmjs.org/qs/-/qs-6.10.3.tgz"
   "version" "6.10.3"
+  dependencies:
+    "side-channel" "^1.0.4"
+
+"qs@^6.11.0":
+  "integrity" "sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q=="
+  "resolved" "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
+  "version" "6.11.0"
   dependencies:
     "side-channel" "^1.0.4"
 
@@ -9304,10 +9331,6 @@
     "json5" "^1.0.1"
     "minimist" "^1.2.6"
     "strip-bom" "^3.0.0"
-
-"tsconfig@*", "tsconfig@file:/Volumes/Hackintosh/work/secondary/opensource/oryx/oryx-core/packages/tsconfig":
-  "resolved" "file:packages/tsconfig"
-  "version" "0.0.1"
 
 "tslib@^1.8.1":
   "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="

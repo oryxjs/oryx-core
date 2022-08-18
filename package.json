@@ -30,6 +30,7 @@
   },
   "packageManager": "npm@8.15.0",
   "dependencies": {
+    "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.3"
   }
 }

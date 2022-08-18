@@ -1,6 +1,5 @@
 import MedusaClient from "@medusajs/medusa-js/dist"
 import Client, { Config } from "@medusajs/medusa-js/dist/request"
-
 // import Admin from "./admin"
 
 class OryxClient extends MedusaClient {

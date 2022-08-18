@@ -1,7 +1,8 @@
 {
   "name": "@oryxjs/oryx-js",
-  "version": "1.0.0",
-  "description": "Client wrapper for oryx core.",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Client interface for oryx core.",
   "main": "index.js",
   "scripts": {
     "build": "tsc --build"
@@ -13,11 +14,11 @@
   "dependencies": {
     "@medusajs/medusa-js": "^1.2.5",
     "qs": "^6.11.0",
-    "@oryxjs/oryx": "^1.0.0"
+    "@oryxjs/oryx": "*"
   },
   "devDependencies": {
-    "tsconfig": "*",
-    "eslint-config": "*"
+    "@oryxjs/oryx-tsconfig": "*",
+    "@oryxjs/oryx-eslint-config": "*"
   },
   "author": "Aboozaid",
   "license": "ISC",

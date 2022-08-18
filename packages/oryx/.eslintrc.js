@@ -1,4 +1,4 @@
-const preset = require("eslint-config/eslint-preset")
+const preset = require("@oryxjs/oryx-eslint-config/eslint-preset")
 module.exports = {
   ...preset,
   rules: {
