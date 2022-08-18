@@ -1,0 +1,55 @@
+{
+  "name": "oryx-react",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Aboozaid",
+  "main": "dist/index.js",
+  "module": "dist/oryx-react.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "analyze": "size-limit --why",
+    "build": "dts build",
+    "lint": "dts lint",
+    "prepare": "dts build",
+    "size": "size-limit",
+    "start": "dts watch",
+    "test": "dts test --passWithNoTests"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "size-limit": [
+    {
+      "path": "dist/oryx-react.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/oryx-react.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.0.1",
+    "@tsconfig/create-react-app": "^1.0.2",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "dts-cli": "^1.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "size-limit": "^8.0.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4",
+    "eslint-config": "*"
+  }
+}
