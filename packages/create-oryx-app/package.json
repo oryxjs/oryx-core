@@ -1,5 +1,5 @@
 {
-  "name": "create-medusa-app",
+  "name": "create-oryx-app",
   "version": "0.0.6",
   "main": "dist/index.js",
   "bin": "cli.js",
@@ -49,10 +49,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa.git",
-    "directory": "packages/create-medusa-app"
+    "url": "https://github.com/oryxjs/oryx-core",
+    "directory": "packages/create-oryx-app"
   },
-  "author": "Sebastian Rindom <seb@medusa-commerce.com>",
+  "author": "Aboozaid",
   "publishConfig": {
     "access": "public"
   },
