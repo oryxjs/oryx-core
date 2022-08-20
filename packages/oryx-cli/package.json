@@ -1,15 +1,15 @@
 {
-  "name": "@medusajs/medusa-cli",
+  "name": "@oryxjs/oryx-cli",
   "version": "1.3.1",
-  "description": "Command Line interface for Medusa Commerce",
+  "description": "Command Line interface for Oryx Commerce",
   "main": "dist/index.js",
   "bin": {
-    "medusa": "cli.js"
+    "oryx": "cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-cli"
+    "url": "https://github.com/oryxjs/oryx-core",
+    "directory": "packages/oryx-cli"
   },
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,7 @@
     "prepare": "cross-env NODE_ENV=production yarn run build",
     "watch": "babel -w src --out-dir dist/ --ignore **/__tests__"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -51,8 +51,8 @@
     "is-valid-path": "^0.1.1",
     "joi-objectid": "^3.0.1",
     "meant": "^1.0.1",
-    "medusa-core-utils": "^0.1.27",
-    "medusa-telemetry": "^0.0.11",
+    "//medusa-core-utils": "^0.1.27",
+    "//medusa-telemetry": "^0.0.11",
     "netrc-parser": "^3.1.6",
     "open": "^8.0.6",
     "ora": "^5.4.1",
