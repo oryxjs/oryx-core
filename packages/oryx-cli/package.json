@@ -51,8 +51,8 @@
     "is-valid-path": "^0.1.1",
     "joi-objectid": "^3.0.1",
     "meant": "^1.0.1",
-    "//medusa-core-utils": "^0.1.27",
-    "//medusa-telemetry": "^0.0.11",
+    "medusa-core-utils": "file:../oryx-core-utils",
+    "medusa-telemetry": "file:../oryx-telemetry",
     "netrc-parser": "^3.1.6",
     "open": "^8.0.6",
     "ora": "^5.4.1",
@@ -66,5 +66,8 @@
     "winston": "^3.3.3",
     "yargs": "^15.3.1"
   },
-  "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808"
+  "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808",
+  "comments": {
+    "dependencies": {}
+  }
 }

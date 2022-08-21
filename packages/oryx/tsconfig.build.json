@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "babel-preset-medusa-package": ["babel-preset-oryx-package"],
+      "medusa-interfaces/*": ["oryx-interfaces/*"],
+      "@medusajs/medusa-cli/*": ["@oryxjs/oryx-cli/*"],
+      "medusa-core-utils/*": ["oryx-core-utils/*"],
+      "medusa-test-utils/*": ["oryx-test-utils/*"],
+    },
+    "baseUrl": "src"
+  },
+}

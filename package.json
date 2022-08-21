@@ -1,9 +1,11 @@
 {
   "name": "oryx-core-root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -21,31 +23,32 @@
   },
   "homepage": "https://github.com/oryxjs/oryx-core#readme",
   "devDependencies": {
-    "turbo": "latest",
     "@babel/core": "^7.12.7",
     "@babel/eslint-parser": "^7.15.8",
-    "//@babel/node": "//^7.12.6",
-    "//@babel/plugin-proposal-class-properties": "^7.10.4",
-    "//@babel/plugin-transform-classes": "^7.10.4",
-    "//@babel/plugin-transform-instanceof": "^7.10.4",
-    "//@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
-    "//@babel/register": "^7.11.5",
-    "//@babel/runtime": "^7.11.2",
-
     "eslint": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.1.1"
+    "prettier": "^2.1.1",
+    "turbo": "latest"
   },
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "packageManager": "npm@8.15.0",
+  "packageManager": "yarn@3.2.1",
   "dependencies": {
     "@changesets/changelog-github": "^0.4.6",
-    "@changesets/cli": "^2.24.3"
+    "@changesets/cli": "^2.24.3",
+    "replace-in-file": "^6.3.5",
+    "simple-git": "^3.12.0"
+  },
+  "comments": {
+    "devDependencies": {
+      "//@babel/node": "^7.12.6",
+      "//@babel/plugin-proposal-class-properties": "^7.10.4",
+      "//@babel/plugin-transform-classes": "^7.10.4",
+      "//@babel/plugin-transform-instanceof": "^7.10.4",
+      "//@babel/plugin-transform-runtime": "^7.11.5",
+      "//@babel/register": "^7.11.5",
+      "//@babel/runtime": "^7.11.2"
+    }
   }
 }
