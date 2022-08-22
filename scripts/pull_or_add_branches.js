@@ -16,7 +16,7 @@ async function main() {
   git.addRemote("medusa", repoUrl)
   .then((r) => {
     return git.raw('fetch', 'medusa')
-  }).then((d) => {
+  }).then(() => {
     let oryx_branches = []
     if(args.length) {
       oryx_branches = [...args]
@@ -29,7 +29,7 @@ async function main() {
         oryx_branches = Object.keys(d.branches).filter((b) => b.includes('medusa/')).map((b) => b.split('/')[1])
       })
     }
-    
+    console.log(oryx_branches)
     for(let p of oryx_branches) {
       const shouldPull = fs.existsSync(`${process.cwd}/packages/${p}`)
       git.raw(
