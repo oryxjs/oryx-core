@@ -53,7 +53,7 @@ async function main() {
         }
       )
     }
-
+  }).finally(() => {
     git.removeRemote("medusa")
   })
   
