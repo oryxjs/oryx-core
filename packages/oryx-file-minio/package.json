@@ -1,5 +1,5 @@
 {
-  "name": "medusa-file-minio",
+  "name": "oryx-file-minio",
   "version": "1.0.9",
   "description": "MinIO server file connector for Medusa",
   "main": "index.js",

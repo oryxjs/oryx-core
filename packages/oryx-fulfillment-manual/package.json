@@ -1,5 +1,5 @@
 {
-  "name": "medusa-fulfillment-manual",
+  "name": "oryx-fulfillment-manual",
   "version": "1.1.31",
   "description": "A manual fulfillment provider for Medusa",
   "main": "index.js",

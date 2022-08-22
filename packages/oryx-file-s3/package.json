@@ -1,5 +1,5 @@
 {
-  "name": "medusa-file-s3",
+  "name": "oryx-file-s3",
   "version": "1.1.4",
   "description": "AWS s3 file connector for Medusa",
   "main": "index.js",

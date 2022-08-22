@@ -1,5 +1,5 @@
 {
-  "name": "medusa-payment-paypal",
+  "name": "oryx-payment-paypal",
   "version": "1.2.4",
   "description": "Paypal Payment provider for Meduas Commerce",
   "main": "index.js",

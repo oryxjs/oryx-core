@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-contentful",
+  "name": "oryx-plugin-contentful",
   "version": "1.2.3",
   "description": "Contentful plugin for Medusa Commerce",
   "main": "index.js",

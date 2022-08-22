@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-slack-notification",
+  "name": "oryx-plugin-slack-notification",
   "version": "1.3.3",
   "description": "Slack notifications",
   "main": "index.js",

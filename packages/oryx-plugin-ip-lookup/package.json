@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-ip-lookup",
+  "name": "oryx-plugin-ip-lookup",
   "version": "1.2.1",
   "description": "IP lookup middleware for Medusa core",
   "main": "dist/index.js",

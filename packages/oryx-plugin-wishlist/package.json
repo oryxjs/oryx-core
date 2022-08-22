@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-wishlist",
+  "name": "oryx-plugin-wishlist",
   "version": "1.1.37",
   "description": "Provides /customers/:id/wishlist to add items to a customr's wishlist",
   "main": "index.js",

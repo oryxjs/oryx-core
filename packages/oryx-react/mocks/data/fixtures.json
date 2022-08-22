@@ -542,7 +542,7 @@
     },
     "store": {
       "id": "store_01F0YESXYNJNTJJY5G5Z26KHKJ",
-      "name": "Medusa Store",
+      "name": "Oryx Store",
       "default_currency_code": "usd",
       "default_currency": {
         "code": "usd",

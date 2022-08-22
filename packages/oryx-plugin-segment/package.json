@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-segment",
+  "name": "oryx-plugin-segment",
   "version": "1.3.0",
   "description": "Segment Analytics",
   "main": "index.js",

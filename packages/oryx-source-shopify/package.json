@@ -1,5 +1,5 @@
 {
-  "name": "medusa-source-shopify",
+  "name": "oryx-source-shopify",
   "version": "1.2.2",
   "description": "Source plugin that allows users to import products from a Shopify store",
   "main": "index.js",

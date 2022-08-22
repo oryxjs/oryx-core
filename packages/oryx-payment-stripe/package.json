@@ -1,5 +1,5 @@
 {
-  "name": "medusa-payment-stripe",
+  "name": "oryx-payment-stripe",
   "version": "1.1.42",
   "description": "Stripe Payment provider for Meduas Commerce",
   "main": "index.js",

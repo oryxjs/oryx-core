@@ -1,5 +1,5 @@
 {
-  "name": "medusa-plugin-algolia",
+  "name": "oryx-plugin-algolia",
   "version": "0.2.4",
   "description": "Search support for algolia",
   "main": "index.js",
