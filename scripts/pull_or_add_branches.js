@@ -36,7 +36,7 @@ async function main() {
 
 function pull_or_add_packages(packages) {
   for(let p of packages) {
-    const shouldPull = fs.existsSync(`${process.cwd}/packages/${p}`)
+    const shouldPull = fs.existsSync(`${process.cwd()}/packages/${p}`)
     git.raw(
       [
         "subtree",
