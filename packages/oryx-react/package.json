@@ -22,7 +22,6 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x",
     "react": ">=16",
     "react-query": ">= 3.29.0"
   },
@@ -81,6 +80,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x",
     "@medusajs/medusa-js:": "file:../oryx-js",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

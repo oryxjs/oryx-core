@@ -51,7 +51,7 @@
     "is-valid-path": "^0.1.1",
     "joi-objectid": "^3.0.1",
     "meant": "^1.0.1",
-    "medusa-core-utils": "file:../oryx-core-utils",
+    "medusa-core-utils": "npm:oryx-core-utils@1.1.31",
     "medusa-telemetry": "file:../oryx-telemetry",
     "netrc-parser": "^3.1.6",
     "open": "^8.0.6",

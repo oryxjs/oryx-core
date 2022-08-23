@@ -4026,18 +4026,18 @@ __metadata:
 
 "@medusajs/medusa-js:@file:../oryx-js::locator=oryx-react%40workspace%3Apackages%2Foryx-react":
   version: 1.2.5
-  resolution: "@medusajs/medusa-js:@file:../oryx-js#../oryx-js::hash=d94cbc&locator=oryx-react%40workspace%3Apackages%2Foryx-react"
+  resolution: "@medusajs/medusa-js:@file:../oryx-js#../oryx-js::hash=75484b&locator=oryx-react%40workspace%3Apackages%2Foryx-react"
   dependencies:
     "@medusajs/medusa": "npm:@oryxjs/oryx@1.3.5"
     axios: ^0.24.0
     form-data: ^4.0.0
     qs: ^6.10.3
     retry-axios: ^2.6.0
-  checksum: 1105e7b1e46a5e6541c119eadde14bac108b7bcc444ad35d79a23cf1fa8abbb0e6d90675ced3953aed45be951372536065508d4b9edd7286b0f966d17a17565b
+  checksum: 8ca726c6fdf4032bb097a5eb651454b487a4bbde99fca6777bcf0e1d38022824ab068153d9e1e159b41b6e7913754003333105a72af488b2648279a8eb960fe8
   languageName: node
   linkType: hard
 
-"@medusajs/medusa@npm:@oryxjs/oryx@1.3.5, @oryxjs/oryx@workspace:packages/oryx":
+"@medusajs/medusa@npm:@oryxjs/oryx@1.3.5, @medusajs/medusa@npm:@oryxjs/oryx@1.x, @oryxjs/oryx@workspace:packages/oryx":
   version: 0.0.0-use.local
   resolution: "@oryxjs/oryx@workspace:packages/oryx"
   dependencies:
@@ -4075,8 +4075,8 @@ __metadata:
     joi: ^17.3.0
     joi-objectid: ^3.0.1
     jsonwebtoken: ^8.5.1
-    medusa-core-utils: "file:../oryx-core-utils"
-    medusa-interfaces: "file:../oryx-interfaces"
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: "file:../oryx-test-utils"
     morgan: ^1.9.1
     multer: ^1.4.2
@@ -4102,7 +4102,6 @@ __metadata:
     uuid: ^8.3.1
     winston: ^3.2.1
   peerDependencies:
-    oryx-interfaces: "*"
     typeorm: 0.2.x
   bin:
     oryx: ./cli.js
@@ -4439,7 +4438,7 @@ __metadata:
     jest: ^25.5.2
     joi-objectid: ^3.0.1
     meant: ^1.0.1
-    medusa-core-utils: "file:../oryx-core-utils"
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
     medusa-telemetry: "file:../oryx-telemetry"
     netrc-parser: ^3.1.6
     open: ^8.0.6
@@ -16882,9 +16881,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-medusa@workspace:packages/gatsby-source-oryx":
+"gatsby-source-oryx@workspace:packages/gatsby-source-oryx":
   version: 0.0.0-use.local
-  resolution: "gatsby-source-medusa@workspace:packages/gatsby-source-oryx"
+  resolution: "gatsby-source-oryx@workspace:packages/gatsby-source-oryx"
   dependencies:
     "@types/jest": ^27.0.1
     axios: ^0.24.0
@@ -22859,26 +22858,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"medusa-core-utils@file:../oryx-core-utils::locator=%40oryxjs%2Foryx%40workspace%3Apackages%2Foryx":
-  version: 1.1.31
-  resolution: "medusa-core-utils@file:../oryx-core-utils#../oryx-core-utils::hash=df1226&locator=%40oryxjs%2Foryx%40workspace%3Apackages%2Foryx"
-  dependencies:
-    joi: ^17.3.0
-    joi-objectid: ^3.0.1
-  checksum: aa65768e71b5579ad01bf311c707e4ac5c31914ae2bc1de657937fb387cc71548f1bf7d151cb1b367e8cc4783b2346ee074a1cfe544b479abbbcb4447c036d68
-  languageName: node
-  linkType: hard
-
-"medusa-core-utils@file:../oryx-core-utils::locator=%40oryxjs%2Foryx-cli%40workspace%3Apackages%2Foryx-cli":
-  version: 1.1.31
-  resolution: "medusa-core-utils@file:../oryx-core-utils#../oryx-core-utils::hash=df1226&locator=%40oryxjs%2Foryx-cli%40workspace%3Apackages%2Foryx-cli"
-  dependencies:
-    joi: ^17.3.0
-    joi-objectid: ^3.0.1
-  checksum: aa65768e71b5579ad01bf311c707e4ac5c31914ae2bc1de657937fb387cc71548f1bf7d151cb1b367e8cc4783b2346ee074a1cfe544b479abbbcb4447c036d68
-  languageName: node
-  linkType: hard
-
 "medusa-core-utils@file:../oryx-core-utils::locator=medusa-test-utils%40file%3A..%2Foryx-test-utils%23..%2Foryx-test-utils%3A%3Ahash%3D601cdd%26locator%3D%2540oryxjs%252Foryx%2540workspace%253Apackages%252Foryx":
   version: 1.1.31
   resolution: "medusa-core-utils@file:../oryx-core-utils#../oryx-core-utils::hash=df1226&locator=medusa-test-utils%40file%3A..%2Foryx-test-utils%23..%2Foryx-test-utils%3A%3Ahash%3D601cdd%26locator%3D%2540oryxjs%252Foryx%2540workspace%253Apackages%252Foryx"
@@ -22899,37 +22878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"medusa-core-utils@file:../oryx-core-utils::locator=oryx-interfaces%40workspace%3Apackages%2Foryx-interfaces":
-  version: 1.1.31
-  resolution: "medusa-core-utils@file:../oryx-core-utils#../oryx-core-utils::hash=df1226&locator=oryx-interfaces%40workspace%3Apackages%2Foryx-interfaces"
-  dependencies:
-    joi: ^17.3.0
-    joi-objectid: ^3.0.1
-  checksum: aa65768e71b5579ad01bf311c707e4ac5c31914ae2bc1de657937fb387cc71548f1bf7d151cb1b367e8cc4783b2346ee074a1cfe544b479abbbcb4447c036d68
-  languageName: node
-  linkType: hard
-
-"medusa-core-utils@file:../oryx-core-utils::locator=oryx-test-utils%40workspace%3Apackages%2Foryx-test-utils":
-  version: 1.1.31
-  resolution: "medusa-core-utils@file:../oryx-core-utils#../oryx-core-utils::hash=df1226&locator=oryx-test-utils%40workspace%3Apackages%2Foryx-test-utils"
-  dependencies:
-    joi: ^17.3.0
-    joi-objectid: ^3.0.1
-  checksum: aa65768e71b5579ad01bf311c707e4ac5c31914ae2bc1de657937fb387cc71548f1bf7d151cb1b367e8cc4783b2346ee074a1cfe544b479abbbcb4447c036d68
-  languageName: node
-  linkType: hard
-
-"medusa-core-utils@npm:^0.1.27":
-  version: 0.1.39
-  resolution: "medusa-core-utils@npm:0.1.39"
-  dependencies:
-    "@hapi/joi": ^16.1.8
-    joi-objectid: ^3.0.1
-  checksum: 7c5d51de35e96312fd34e7c7b3b23cdcce197bbdad672234d766a44abe1b22cfccb28855d496b5e422558d72e87808e826ef2ef80189eaa45bdfba84942f2c8c
-  languageName: node
-  linkType: hard
-
-"medusa-core-utils@npm:^1.1.31, medusa-core-utils@npm:^1.1.32":
+"medusa-core-utils@npm:^1.1.32":
   version: 1.1.32
   resolution: "medusa-core-utils@npm:1.1.32"
   dependencies:
@@ -22939,29 +22888,59 @@ __metadata:
   languageName: node
   linkType: hard
 
-"medusa-interfaces@file:../oryx-interfaces::locator=%40oryxjs%2Foryx%40workspace%3Apackages%2Foryx":
-  version: 1.3.2
-  resolution: "medusa-interfaces@file:../oryx-interfaces#../oryx-interfaces::hash=d02b48&locator=%40oryxjs%2Foryx%40workspace%3Apackages%2Foryx"
-  peerDependencies:
-    medusa-core-utils: "*"
-    typeorm: 0.x
-  checksum: 1a9a337a5c9fa452018a1f91efa665b363736263dca389c23043ba08667f381f2f9d4073f74488e44b6a05e4388d1bdbd372ba8b91c192ca8fcd25c19227107a
-  languageName: node
-  linkType: hard
+"medusa-core-utils@npm:oryx-core-utils@1.1.31, oryx-core-utils@workspace:packages/oryx-core-utils":
+  version: 0.0.0-use.local
+  resolution: "oryx-core-utils@workspace:packages/oryx-core-utils"
+  dependencies:
+    "@babel/cli": ^7.13.0
+    "@babel/core": ^7.13.8
+    "@babel/plugin-proposal-class-properties": ^7.13.0
+    "@babel/plugin-transform-classes": ^7.9.5
+    "@babel/plugin-transform-runtime": ^7.7.6
+    "@babel/preset-env": ^7.13.9
+    "@babel/preset-typescript": ^7.16.0
+    "@babel/runtime": ^7.13.9
+    class-transformer: ^0.5.1
+    class-validator: ^0.13.1
+    cross-env: ^5.2.1
+    eslint: ^6.8.0
+    jest: ^25.5.2
+    joi: ^17.3.0
+    joi-objectid: ^3.0.1
+    prettier: ^1.19.1
+    typescript: ^4.4.4
+  languageName: unknown
+  linkType: soft
 
-"medusa-interfaces@npm:^1.3.1, medusa-interfaces@npm:^1.3.2":
-  version: 1.3.2
-  resolution: "medusa-interfaces@npm:1.3.2"
+"medusa-interfaces@npm:oryx-interfaces@1.3.2, oryx-interfaces@workspace:packages/oryx-interfaces":
+  version: 0.0.0-use.local
+  resolution: "oryx-interfaces@workspace:packages/oryx-interfaces"
+  dependencies:
+    "@babel/cli": ^7.7.5
+    "@babel/core": ^7.7.5
+    "@babel/plugin-proposal-class-properties": ^7.7.4
+    "@babel/plugin-transform-classes": ^7.9.5
+    "@babel/plugin-transform-instanceof": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.7.6
+    "@babel/preset-env": ^7.7.5
+    "@babel/preset-typescript": ^7.13.0
+    "@babel/runtime": ^7.9.6
+    cross-env: ^5.2.1
+    eslint: ^6.8.0
+    jest: ^25.5.2
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-test-utils: "file:../oryx-test-utils"
+    prettier: ^1.19.1
+    typeorm: ^0.2.29
+    typescript: ^4.4.4
   peerDependencies:
-    medusa-core-utils: ^1.1.31
     typeorm: 0.x
-  checksum: bc50a73e3c1b248679247886fbd8ca9c8bc91093046da45515969d6e194261e0a05ad7008e3279b95afc92f6e8c0ef10b7a2b9204aa6de352d966d2ec67b7257
-  languageName: node
-  linkType: hard
+  languageName: unknown
+  linkType: soft
 
 "medusa-telemetry@file:../oryx-telemetry::locator=%40medusajs%2Fmedusa-cli%40file%3A..%2Foryx-cli%23..%2Foryx-cli%3A%3Ahash%3D3bc5ac%26locator%3D%2540oryxjs%252Foryx%2540workspace%253Apackages%252Foryx":
   version: 0.0.11
-  resolution: "medusa-telemetry@file:../oryx-telemetry#../oryx-telemetry::hash=91a524&locator=%40medusajs%2Fmedusa-cli%40file%3A..%2Foryx-cli%23..%2Foryx-cli%3A%3Ahash%3D3bc5ac%26locator%3D%2540oryxjs%252Foryx%2540workspace%253Apackages%252Foryx"
+  resolution: "medusa-telemetry@file:../oryx-telemetry#../oryx-telemetry::hash=a485d2&locator=%40medusajs%2Fmedusa-cli%40file%3A..%2Foryx-cli%23..%2Foryx-cli%3A%3Ahash%3D3bc5ac%26locator%3D%2540oryxjs%252Foryx%2540workspace%253Apackages%252Foryx"
   dependencies:
     axios: ^0.21.1
     axios-retry: ^3.1.9
@@ -22972,13 +22951,13 @@ __metadata:
     is-docker: ^2.2.1
     remove-trailing-slash: ^0.1.1
     uuid: ^8.3.2
-  checksum: 64c9620ed7b3076b166574cdc658982316c6c9aebc0737025c38d091f53bac02da0aa314eb1c1a294893879e88bbf415047d1f4258d73664ed2ec67ab8ab5db4
+  checksum: e349dd7c408b6440a37b15219e6ec2bdc4155cd4bd8e3ca94f099ae153b111c2dc56cbc119921bc2ddc176bc6320bb844ef63e7a3847c2f3fb3ac77f8d9a9658
   languageName: node
   linkType: hard
 
 "medusa-telemetry@file:../oryx-telemetry::locator=%40oryxjs%2Foryx-cli%40workspace%3Apackages%2Foryx-cli":
   version: 0.0.11
-  resolution: "medusa-telemetry@file:../oryx-telemetry#../oryx-telemetry::hash=91a524&locator=%40oryxjs%2Foryx-cli%40workspace%3Apackages%2Foryx-cli"
+  resolution: "medusa-telemetry@file:../oryx-telemetry#../oryx-telemetry::hash=a485d2&locator=%40oryxjs%2Foryx-cli%40workspace%3Apackages%2Foryx-cli"
   dependencies:
     axios: ^0.21.1
     axios-retry: ^3.1.9
@@ -22989,7 +22968,7 @@ __metadata:
     is-docker: ^2.2.1
     remove-trailing-slash: ^0.1.1
     uuid: ^8.3.2
-  checksum: 64c9620ed7b3076b166574cdc658982316c6c9aebc0737025c38d091f53bac02da0aa314eb1c1a294893879e88bbf415047d1f4258d73664ed2ec67ab8ab5db4
+  checksum: e349dd7c408b6440a37b15219e6ec2bdc4155cd4bd8e3ca94f099ae153b111c2dc56cbc119921bc2ddc176bc6320bb844ef63e7a3847c2f3fb3ac77f8d9a9658
   languageName: node
   linkType: hard
 
@@ -24833,30 +24812,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"oryx-core-utils@workspace:packages/oryx-core-utils":
-  version: 0.0.0-use.local
-  resolution: "oryx-core-utils@workspace:packages/oryx-core-utils"
-  dependencies:
-    "@babel/cli": ^7.13.0
-    "@babel/core": ^7.13.8
-    "@babel/plugin-proposal-class-properties": ^7.13.0
-    "@babel/plugin-transform-classes": ^7.9.5
-    "@babel/plugin-transform-runtime": ^7.7.6
-    "@babel/preset-env": ^7.13.9
-    "@babel/preset-typescript": ^7.16.0
-    "@babel/runtime": ^7.13.9
-    class-transformer: ^0.5.1
-    class-validator: ^0.13.1
-    cross-env: ^5.2.1
-    eslint: ^6.8.0
-    jest: ^25.5.2
-    joi: ^17.3.0
-    joi-objectid: ^3.0.1
-    prettier: ^1.19.1
-    typescript: ^4.4.4
-  languageName: unknown
-  linkType: soft
-
 "oryx-dev-cli@workspace:packages/oryx-dev-cli":
   version: 0.0.0-use.local
   resolution: "oryx-dev-cli@workspace:packages/oryx-dev-cli"
@@ -24905,10 +24860,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -24933,10 +24887,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -24961,11 +24914,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
     medusa-test-utils: ^1.1.37
     stripe: ^8.50.0
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -24986,9 +24937,8 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
-  peerDependencies:
-    medusa-interfaces: 1.x
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
   languageName: unknown
   linkType: soft
 
@@ -25012,36 +24962,8 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
-  peerDependencies:
-    medusa-interfaces: 1.x
-  languageName: unknown
-  linkType: soft
-
-"oryx-interfaces@workspace:packages/oryx-interfaces":
-  version: 0.0.0-use.local
-  resolution: "oryx-interfaces@workspace:packages/oryx-interfaces"
-  dependencies:
-    "@babel/cli": ^7.7.5
-    "@babel/core": ^7.7.5
-    "@babel/plugin-proposal-class-properties": ^7.7.4
-    "@babel/plugin-transform-classes": ^7.9.5
-    "@babel/plugin-transform-instanceof": ^7.8.3
-    "@babel/plugin-transform-runtime": ^7.7.6
-    "@babel/preset-env": ^7.7.5
-    "@babel/preset-typescript": ^7.13.0
-    "@babel/runtime": ^7.9.6
-    cross-env: ^5.2.1
-    eslint: ^6.8.0
-    jest: ^25.5.2
-    medusa-core-utils: "file:../oryx-core-utils"
-    medusa-test-utils: "file:../oryx-test-utils"
-    prettier: ^1.19.1
-    typeorm: ^0.2.29
-    typescript: ^4.4.4
-  peerDependencies:
-    medusa-core-utils: "*"
-    typeorm: 0.x
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
   languageName: unknown
   linkType: soft
 
@@ -25068,10 +24990,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25097,10 +25018,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -25122,9 +25042,8 @@ __metadata:
     cross-env: ^5.2.1
     eslint: ^6.8.0
     jest: ^25.5.2
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25150,11 +25069,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
-    medusa-interfaces: ^1.3.2
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -25179,11 +25096,10 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     stripe: ^8.50.0
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -25207,10 +25123,9 @@ __metadata:
     eslint: ^6.8.0
     jest: ^25.5.2
     lodash: ^4.17.21
-    medusa-core-utils: ^1.1.31
-    medusa-interfaces: ^1.3.2
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
   peerDependencies:
-    medusa-interfaces: 1.3.2
     typeorm: 0.x
   languageName: unknown
   linkType: soft
@@ -25238,13 +25153,11 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
-    medusa-interfaces: ^1.3.1
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     prettier: ^2.0.5
     randomatic: ^3.1.1
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25269,11 +25182,10 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     redis: ^3.0.2
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25297,10 +25209,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^0.1.27
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     randomatic: ^3.1.1
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25325,11 +25236,10 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     moment: ^2.27.0
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25348,8 +25258,7 @@ __metadata:
     axios: ^0.20.0
     cross-env: ^5.2.1
     jest: ^25.5.2
-  peerDependencies:
-    medusa-interfaces: 1.x
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
   languageName: unknown
   linkType: soft
 
@@ -25375,10 +25284,9 @@ __metadata:
     express: ^4.17.1
     jest: ^25.5.2
     mailchimp-api-v3: ^1.14.0
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25401,10 +25309,9 @@ __metadata:
     eslint: ^6.8.0
     jest: ^25.5.2
     lodash: ^4.17.21
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     meilisearch: ^0.24.0
-  peerDependencies:
-    medusa-interfaces: 1.3.2
   languageName: unknown
   linkType: soft
 
@@ -25416,6 +25323,7 @@ __metadata:
     "@babel/core": ^7.7.5
     "@babel/plugin-transform-typescript": ^7.13.0
     "@babel/preset-typescript": ^7.12.7
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x"
     babel-preset-medusa-package: ^1.1.19
     body-parser: ^1.19.0
     cors: ^2.8.5
@@ -25423,13 +25331,11 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     pg: ^8.5.1
     ulid: ^2.3.0
-  peerDependencies:
-    "@medusajs/medusa": 1.x
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25454,10 +25360,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25482,10 +25387,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25510,11 +25414,10 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     moment: ^2.27.0
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25536,11 +25439,10 @@ __metadata:
     cross-env: ^5.2.1
     eslint: ^6.8.0
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
     twilio: ^3.49.1
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25564,10 +25466,9 @@ __metadata:
     eslint: ^6.8.0
     express: ^4.17.1
     jest: ^25.5.2
-    medusa-core-utils: ^1.1.31
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
-  peerDependencies:
-    medusa-interfaces: 1.x
   languageName: unknown
   linkType: soft
 
@@ -25576,6 +25477,7 @@ __metadata:
   resolution: "oryx-react@workspace:packages/oryx-react"
   dependencies:
     "@babel/core": ^7.16.0
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x"
     "@medusajs/medusa-js:": "file:../oryx-js"
     "@size-limit/preset-small-lib": ^6.0.4
     "@storybook/addon-contexts": ^5.3.21
@@ -25607,7 +25509,6 @@ __metadata:
     ts-jest: ^27.1.4
     tslib: ^2.3.1
   peerDependencies:
-    "@medusajs/medusa": "*"
     react: ">=16"
     react-query: ">= 3.29.0"
   languageName: unknown
@@ -25637,11 +25538,10 @@ __metadata:
     ioredis: ^4.27.9
     jest: ^26.6.3
     lodash: ^4.17.21
-    medusa-core-utils: ^1.1.31
-    medusa-interfaces: ^1.3.2
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
+    medusa-interfaces: "npm:oryx-interfaces@1.3.2"
     medusa-test-utils: ^1.1.37
   peerDependencies:
-    medusa-interfaces: 1.3.2
     typeorm: 0.x
   languageName: unknown
   linkType: soft
@@ -25685,7 +25585,7 @@ __metadata:
     cross-env: ^5.2.1
     eslint: ^6.8.0
     jest: ^25.5.2
-    medusa-core-utils: "file:../oryx-core-utils"
+    medusa-core-utils: "npm:oryx-core-utils@1.1.31"
     randomatic: ^3.1.1
   languageName: unknown
   linkType: soft

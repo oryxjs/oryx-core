@@ -37,3 +37,4 @@ packages/**/.yarn/*
 .turbo
 .npmrc
 package-lock.json
+packages-versions.json
