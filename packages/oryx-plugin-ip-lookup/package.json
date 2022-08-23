@@ -1,12 +1,12 @@
 {
   "name": "oryx-plugin-ip-lookup",
   "version": "1.2.1",
-  "description": "IP lookup middleware for Medusa core",
+  "description": "IP lookup middleware for Oryx core",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-ip-lookup"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-ip-lookup"
   },
   "scripts": {
     "prepare": "cross-env NODE_ENV=production yarn run build",
@@ -14,7 +14,7 @@
     "watch": "babel -w src --out-dir .",
     "test": "jest --passWithNoTests"
   },
-  "author": "Oliver Juhl",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",

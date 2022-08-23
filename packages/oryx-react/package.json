@@ -22,7 +22,7 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "@medusajs/medusa": "*",
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x",
     "react": ">=16",
     "react-query": ">= 3.29.0"
   },

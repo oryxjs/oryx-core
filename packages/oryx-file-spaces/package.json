@@ -1,14 +1,14 @@
 {
   "name": "oryx-file-spaces",
   "version": "1.2.4",
-  "description": "Digital Ocean Spaces file connector for Medusa",
+  "description": "Digital Ocean Spaces file connector for Oryx",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-file-spaces"
+    "url": "https://github.com/oryxjs/oryx-core",
+    "directory": "packages/oryx-file-spaces"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -46,7 +46,7 @@
   },
   "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-file"
+    "oryx-plugin",
+    "oryx-plugin-file"
   ]
 }

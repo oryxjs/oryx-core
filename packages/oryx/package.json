@@ -42,7 +42,6 @@
     "test:unit": "jest"
   },
   "peerDependencies": {
-    "oryx-interfaces": "*",
     "typeorm": "0.2.x"
   },
   "dependencies": {

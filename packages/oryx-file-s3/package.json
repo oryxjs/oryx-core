@@ -1,14 +1,14 @@
 {
   "name": "oryx-file-s3",
   "version": "1.1.4",
-  "description": "AWS s3 file connector for Medusa",
+  "description": "AWS s3 file connector for Oryx",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-file-s3"
+    "url": "https://github.com/oryxjs/oryx-core",
+    "directory": "packages/oryx-file-s3"
   },
-  "author": "Sebastian Mateos Nicolajsen",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -45,7 +45,7 @@
   },
   "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-file"
+    "oryx-plugin",
+    "oryx-plugin-file"
   ]
 }

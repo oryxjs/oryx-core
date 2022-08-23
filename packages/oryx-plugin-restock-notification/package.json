@@ -4,10 +4,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-restock-notification"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-restock-notification"
   },
-  "author": "Sebastian Rindom <seb@medusa-commerce.com>",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -29,7 +29,7 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "@medusajs/medusa": "1.x",
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.x",
     "medusa-interfaces": "1.x"
   },
   "dependencies": {
@@ -40,7 +40,7 @@
   },
   "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-notification"
+    "oryx-plugin",
+    "oryx-plugin-notification"
   ]
 }

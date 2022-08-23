@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-source-shopify"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-source-shopify"
   },
-  "author": "Kasper Fabrcius Kristensen <kasper@medusa-commerce.com>",
+  "author": "Aboozaid",
   "license": "MIT",
   "scripts": {
     "prepare": "cross-env NODE_ENV=production yarn run build",
@@ -49,7 +49,7 @@
   },
   "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-source"
+    "oryx-plugin",
+    "oryx-plugin-source"
   ]
 }

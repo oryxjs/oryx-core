@@ -1,14 +1,14 @@
 {
   "name": "oryx-fulfillment-manual",
   "version": "1.1.31",
-  "description": "A manual fulfillment provider for Medusa",
+  "description": "A manual fulfillment provider for Oryx",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-fulfillment-manual"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-fulfillment-manual"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -40,7 +40,7 @@
   },
   "gitHead": "7770046479c361f375842a8605b15e5d7bc24624",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-fulfillment"
+    "oryx-plugin",
+    "oryx-plugin-fulfillment"
   ]
 }

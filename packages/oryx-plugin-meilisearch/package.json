@@ -1,14 +1,14 @@
 {
   "name": "oryx-plugin-meilisearch",
   "version": "0.2.4",
-  "description": "A starter for Medusa projects.",
+  "description": "A starter for Oryx projects.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-meilisearch"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-meilisearch"
   },
-  "author": "Zakaria El Asri",
+  "author": "Aboozaid",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d .",
@@ -42,7 +42,7 @@
   },
   "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-search"
+    "oryx-plugin",
+    "oryx-plugin-search"
   ]
 }

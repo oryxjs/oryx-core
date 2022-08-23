@@ -3,11 +3,11 @@
   "version": "1.1.19",
   "main": "index.js",
   "license": "MIT",
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-discount-generator"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-discount-generator"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",

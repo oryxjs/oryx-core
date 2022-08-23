@@ -1,14 +1,14 @@
 {
   "name": "oryx-fulfillment-webshipper",
   "version": "1.3.3",
-  "description": "Webshipper Fulfillment provider for Medusa",
+  "description": "Webshipper Fulfillment provider for Oryx",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-fulfillment-webshipper"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-fulfillment-webshipper"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -18,7 +18,7 @@
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.5",
     "@babel/runtime": "^7.9.6",
-    "@medusajs/medusa": "^1.3.3",
+    "@medusajs/medusa": "npm:@oryxjs/oryx@1.3.5",
     "client-sessions": "^0.8.0",
     "cross-env": "^5.2.1",
     "eslint": "^6.8.0",
@@ -42,7 +42,7 @@
   },
   "gitHead": "7770046479c361f375842a8605b15e5d7bc24624",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-fulfillment"
+    "oryx-plugin",
+    "oryx-plugin-fulfillment"
   ]
 }

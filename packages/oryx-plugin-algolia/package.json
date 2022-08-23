@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-algolia"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-algolia"
   },
-  "author": "rolwin100",
+  "author": "Aboozaid",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d .",
@@ -44,7 +44,7 @@
   },
   "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-search"
+    "oryx-plugin",
+    "oryx-plugin-search"
   ]
 }

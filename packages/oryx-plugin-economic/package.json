@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-economic"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-economic"
   },
-  "author": "Oliver Juhl",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",

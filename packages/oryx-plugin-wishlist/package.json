@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-plugin-wishlist"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-plugin-wishlist"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -43,6 +43,6 @@
   },
   "gitHead": "3bbd1e8507e00bc471de6ae3c30207999a4a4011",
   "keywords": [
-    "medusa-plugin"
+    "oryx-plugin"
   ]
 }

@@ -1,14 +1,14 @@
 {
   "name": "oryx-payment-stripe",
   "version": "1.1.42",
-  "description": "Stripe Payment provider for Meduas Commerce",
+  "description": "Stripe Payment provider for Oryx Commerce",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-payment-stripe"
+    "url": "https://github.com/oryxjs/oryx",
+    "directory": "packages/oryx-payment-stripe"
   },
-  "author": "Sebastian Rindom",
+  "author": "Aboozaid",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -45,7 +45,7 @@
   },
   "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808",
   "keywords": [
-    "medusa-plugin",
-    "medusa-plugin-payment"
+    "oryx-plugin",
+    "oryx-plugin-payment"
   ]
 }
