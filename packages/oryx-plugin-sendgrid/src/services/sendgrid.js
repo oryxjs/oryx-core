@@ -6,7 +6,7 @@ class SendGridService extends NotificationService {
   static identifier = "sendgrid"
 
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    e.g.
    *    {
    *      api_key: SendGrid api key

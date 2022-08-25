@@ -1,5 +1,5 @@
-import { humanizeAmount } from "medusa-core-utils"
-import { FulfillmentService } from "medusa-interfaces"
+import { humanizeAmount } from "oryx-core-utils"
+import { FulfillmentService } from "oryx-interfaces"
 import Webshipper from "../utils/webshipper"
 
 class WebshipperFulfillmentService extends FulfillmentService {

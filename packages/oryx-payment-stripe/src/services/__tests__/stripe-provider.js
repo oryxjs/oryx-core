@@ -1,4 +1,4 @@
-import { IdMap } from "medusa-test-utils"
+import { IdMap } from "oryx-test-utils"
 import StripeProviderService from "../stripe-provider"
 import { CustomerServiceMock } from "../../__mocks__/customer"
 import { carts } from "../../__mocks__/cart"

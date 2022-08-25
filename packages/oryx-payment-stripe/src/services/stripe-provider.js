@@ -1,6 +1,6 @@
 import Stripe from "stripe"
-import { PaymentService } from "medusa-interfaces"
-import { PaymentSessionStatus } from '@medusajs/medusa/dist'
+import { PaymentService } from "oryx-interfaces"
+import { PaymentSessionStatus } from '@oryxjs/oryx'
 
 class StripeProviderService extends PaymentService {
   static identifier = "stripe"

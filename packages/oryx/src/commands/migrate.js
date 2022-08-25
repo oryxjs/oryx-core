@@ -11,7 +11,7 @@ const t = async function ({ directory }) {
   args.shift()
   args.shift()
 
-  const { configModule } = getConfigFile(directory, `medusa-config`)
+  const { configModule } = getConfigFile(directory, `oryx-config`)
 
   const featureFlagRouter = featureFlagLoader(configModule)
 

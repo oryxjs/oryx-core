@@ -8,7 +8,7 @@ Install the plugin:
 `$ yarn add medusa-plugin-restock-notification`
 
 ```js
-// medusa-config.js
+// oryx-config.js
 
 module.exports = {
   ...,
@@ -66,7 +66,7 @@ Install the plugins:
 `$ yarn add medusa-plugin-restock-notification medusa-plugin-sendgrid`
 
 ```js
-// medusa-config.js
+// oryx-config.js
 
 module.exports = {
   ...,

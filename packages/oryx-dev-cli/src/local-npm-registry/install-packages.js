@@ -74,10 +74,7 @@ const installPackages = async ({
     }
 
     if (!workspacesLayout) {
-      console.error(
-        `Couldn't parse output of "yarn workspaces info" command`,
-        stdout
-      )
+      console.error(`Couldn't parse output of "yarn workspaces info" command`, stdout)
       process.exit(1)
     }
 
@@ -89,7 +86,7 @@ const installPackages = async ({
       let changed = false
       Object.keys(deps).forEach((depName) => {
         if (packagesToInstall.includes(depName)) {
-          deps[depName] = `medusa-dev`
+          deps[depName] = `oryx-dev`
           changed = true
         }
       })
@@ -110,7 +107,7 @@ const installPackages = async ({
       changed |= handleDeps(pkg.peerDependencies)
 
       if (changed) {
-        console.log(`Changing deps in ${pkgJsonPath} to use @medusa-dev`)
+        console.log(`Changing deps in ${pkgJsonPath} to use @oryx-dev`)
         fs.outputJSONSync(pkgJsonPath, pkg, {
           spaces: 2,
         })

@@ -10,44 +10,34 @@ const errorHandler = isProduction
   : console.log
 
 export default (rootDirectory: string): ConfigModule => {
-  const { configModule } = getConfigFile(rootDirectory, `medusa-config`) as {
+  const { configModule } = getConfigFile(rootDirectory, `oryx-config`) as {
     configModule: ConfigModule
   }
 
   if (!configModule?.projectConfig?.redis_url) {
-    console.log(
-      `[medusa-config] ⚠️ redis_url not found. A fake redis instance will be used.`
-    )
+    console.log(`[oryx-config] ⚠️ redis_url not found. A fake redis instance will be used.`)
   }
 
-  const jwt_secret =
-    configModule?.projectConfig?.jwt_secret ?? process.env.JWT_SECRET
+  const jwt_secret = configModule?.projectConfig?.jwt_secret ?? process.env.JWT_SECRET
   if (!jwt_secret) {
     errorHandler(
-      `[medusa-config] ⚠️ jwt_secret not found.${
-        isProduction
-          ? ""
-          : " fallback to either cookie_secret or default 'supersecret'."
+      `[oryx-config] ⚠️ jwt_secret not found.${
+        isProduction ? "" : " fallback to either cookie_secret or default 'supersecret'."
       }`
     )
   }
 
-  const cookie_secret =
-    configModule?.projectConfig?.cookie_secret ?? process.env.COOKIE_SECRET
+  const cookie_secret = configModule?.projectConfig?.cookie_secret ?? process.env.COOKIE_SECRET
   if (!cookie_secret) {
     errorHandler(
-      `[medusa-config] ⚠️ cookie_secret not found.${
-        isProduction
-          ? ""
-          : " fallback to either cookie_secret or default 'supersecret'."
+      `[oryx-config] ⚠️ cookie_secret not found.${
+        isProduction ? "" : " fallback to either cookie_secret or default 'supersecret'."
       }`
     )
   }
 
   if (!configModule?.projectConfig?.database_type) {
-    console.log(
-      `[medusa-config] ⚠️ database_type not found. fallback to default sqlite.`
-    )
+    console.log(`[oryx-config] ⚠️ database_type not found. fallback to default sqlite.`)
   }
 
   return {

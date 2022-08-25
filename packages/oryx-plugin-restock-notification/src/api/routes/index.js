@@ -10,7 +10,7 @@ const route = Router()
 export default (app, rootDirectory) => {
   app.use("/restock-notifications", route)
 
-  const { configModule } = getConfigFile(rootDirectory, "medusa-config")
+  const { configModule } = getConfigFile(rootDirectory, "oryx-config")
   const { projectConfig } = configModule
 
   const corsOptions = {

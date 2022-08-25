@@ -1,27 +1,27 @@
 import path from "path"
 import Commander from "commander"
-import chalk from "chalk"
+// import chalk from "chalk"
 
 import { prompt } from "enquirer"
 import { newStarter } from "./new-starter"
-import { track } from "./track"
+// import { track } from "./track"
 
 import pkg from "../package.json"
 
-let projectPath: string = ""
+let projectPath = ""
 
 const questions = {
   projectRoot: {
     type: "input",
     name: "projectRoot",
     message: "Where should your project be installed?",
-    initial: "my-medusa-store",
+    initial: "my-oryx-store",
   },
   starter: {
     type: "select",
     name: "starter",
-    message: "Which Medusa starter would you like to install?",
-    choices: ["medusa-starter-default", "medusa-starter-contentful", "Other"],
+    message: "Which Oryx starter would you like to install?",
+    choices: ["oryx-starter-default" /* "medusa-starter-contentful", "Other"*/],
   },
   starterUrl: {
     type: "input",
@@ -35,8 +35,8 @@ const questions = {
     choices: [
       "Gatsby Starter",
       "Next.js Starter",
-      "medusa.express (Next.js)",
-      "medusa.express (Gatsby)",
+      "oryx.express (Next.js)",
+      "oryx.express (Gatsby)",
       "Gatsby Starter (Simple)",
       "None",
     ],
@@ -46,10 +46,10 @@ const questions = {
 const program = new Commander.Command(pkg.name)
   .version(pkg.version)
   .action((name) => (projectPath = name))
-  .option(`-r --root`, `The directory to install your Medusa app`)
+  .option(`-r --root`, `The directory to install your Oryx app`)
   .option(
     `-s --starter-url`,
-    `A GitHub URL to a repository that contains a Medusa starter project to bootstrap from`
+    `A GitHub URL to a repository that contains a Oryx starter project to bootstrap from`
   )
   .option(
     `--no-seed`,
@@ -77,7 +77,7 @@ const getStorefrontStarter = (starter: string): string => {
 }
 
 export const run = async (): Promise<void> => {
-  track("CREATE_CLI")
+  // track("CREATE_CLI")
 
   if (typeof projectPath === "string") {
     projectPath = projectPath.trim()
@@ -96,19 +96,19 @@ export const run = async (): Promise<void> => {
     }
     starter = starterUrl
   } else {
-    starter = `medusajs/${starter}`
+    starter = `oryxjs/${starter}`
   }
-  track("STARTER_SELECTED", { starter })
+  // track("STARTER_SELECTED", { starter })
 
   const progOptions = program.opts()
 
   const noSeed = progOptions.noSeed
-  track("SEED_SELECTED", { seed: !noSeed })
+  // track("SEED_SELECTED", { seed: !noSeed })
 
   const { storefront } = (await prompt(questions.storefront)) as {
     storefront: string
   }
-  track("STOREFRONT_SELECTED", { storefront })
+  // track("STOREFRONT_SELECTED", { storefront })
 
   await newStarter({
     starter,
@@ -127,7 +127,7 @@ export const run = async (): Promise<void> => {
     })
   }
   await newStarter({
-    starter: "https://github.com/medusajs/admin",
+    starter: "https://github.com/oryxjs/react-dashboard",
     root: path.join(projectRoot, `admin`),
     keepGit: true,
     verbose: progOptions.verbose,
@@ -136,11 +136,11 @@ export const run = async (): Promise<void> => {
   console.log(`
   Your project is ready 🚀. The available commands are:
   
-    Medusa API
+    Oryx API
     cd ${projectRoot}/backend
     yarn start
 
-    Admin
+    Admin Panel
     cd ${projectRoot}/admin
     yarn start
   `)

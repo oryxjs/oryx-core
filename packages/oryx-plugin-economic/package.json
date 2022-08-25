@@ -3,6 +3,7 @@
   "version": "1.1.37",
   "description": "E-conomic financial reporting",
   "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/oryxjs/oryx",
@@ -38,7 +39,7 @@
     "express": "^4.17.1",
     "medusa-core-utils": "npm:oryx-core-utils@1.1.31",
     "medusa-interfaces": "npm:oryx-interfaces@1.3.2",
-    "medusa-test-utils": "^1.1.37",
+    "medusa-test-utils": "npm:oryx-test-utils@1.1.37",
     "moment": "^2.27.0"
   },
   "gitHead": "3bbd1e8507e00bc471de6ae3c30207999a4a4011"

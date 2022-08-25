@@ -19,13 +19,7 @@ import subscribersLoader from "./subscribers"
 import { ClassOrFunctionReturning } from "awilix/lib/container"
 import { Connection, getManager } from "typeorm"
 import { Express, NextFunction, Request, Response } from "express"
-import {
-  asFunction,
-  asValue,
-  AwilixContainer,
-  createContainer,
-  Resolver,
-} from "awilix"
+import { asFunction, asValue, AwilixContainer, createContainer, Resolver } from "awilix"
 import { track } from "medusa-telemetry"
 import { MedusaContainer } from "../types/global"
 
@@ -49,7 +43,7 @@ export default async ({
   const container = createContainer() as MedusaContainer
   container.register("configModule", asValue(configModule))
 
-  container.registerAdd = function (
+  container.registerAdd = function(
     this: MedusaContainer,
     name: string,
     registration: typeof asFunction | typeof asValue
@@ -187,9 +181,10 @@ export default async ({
 
 function asArray(
   resolvers: (ClassOrFunctionReturning<unknown> | Resolver<unknown>)[]
-): { resolve: (container: AwilixContainer) => unknown[] } {
+): {
+  resolve: (container: AwilixContainer) => unknown[]
+} {
   return {
-    resolve: (container: AwilixContainer) =>
-      resolvers.map((resolver) => container.build(resolver)),
+    resolve: (container: AwilixContainer) => resolvers.map((resolver) => container.build(resolver)),
   }
 }

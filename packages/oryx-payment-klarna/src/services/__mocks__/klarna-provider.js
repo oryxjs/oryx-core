@@ -1,4 +1,4 @@
-import { IdMap } from "medusa-test-utils"
+import { IdMap } from "oryx-test-utils"
 
 export const KlarnaProviderServiceMock = {
   retrievePayment: jest.fn().mockImplementation((cart) => {

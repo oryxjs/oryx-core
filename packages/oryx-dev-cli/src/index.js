@@ -15,10 +15,10 @@ const cli = yargs()
 
 cli.command({
   command: `*`,
-  description: `Start the Medusa dev CLI`,
+  description: `Start the Oryx dev CLI`,
   builder: (yargs) => {
     yargs
-      .usage(`Usage: medusa-dev [options]`)
+      .usage(`Usage: oryx-dev [options]`)
       .alias(`q`, `quiet`)
       .nargs(`q`, 0)
       .describe(`q`, `Do not output copy file information`)
@@ -29,7 +29,7 @@ cli.command({
       .nargs(`p`, 1)
       .describe(
         `p`,
-        `Set path to medusa repository.
+        `Set path to oryx repository.
 You typically only need to configure this once.`
       )
       .nargs(`force-install`, 0)
@@ -38,23 +38,17 @@ You typically only need to configure this once.`
         `Disables copying files into node_modules and forces usage of local npm repository.`
       )
       .nargs(`external-registry`, 0)
-      .describe(
-        `external-registry`,
-        `Run 'yarn add' commands without the --registry flag.`
-      )
+      .describe(`external-registry`, `Run 'yarn add' commands without the --registry flag.`)
       .alias(`C`, `copy-all`)
       .nargs(`C`, 0)
-      .describe(
-        `C`,
-        `Copy all contents in packages/ instead of just medusa packages`
-      )
+      .describe(`C`, `Copy all contents in packages/ instead of just oryx packages`)
       .array(`packages`)
       .describe(`packages`, `Explicitly specify packages to copy`)
       .help(`h`)
       .alias(`h`, `help`)
       .nargs(`v`, 0)
       .alias(`v`, `version`)
-      .describe(`v`, `Print the currently installed version of Medusa Dev CLI`)
+      .describe(`v`, `Print the currently installed version of Oryx Dev CLI`)
   },
   handler: async (argv) => {
     const conf = new Configstore(pkg.name)
@@ -70,7 +64,7 @@ You typically only need to configure this once.`
       if (pathToRepo.includes(`~`)) {
         pathToRepo = path.join(os.homedir(), pathToRepo.split(`~`).pop())
       }
-      conf.set(`medusa-location`, path.resolve(pathToRepo))
+      conf.set(`oryx-location`, path.resolve(pathToRepo))
       process.exit()
     }
 
@@ -81,14 +75,14 @@ You typically only need to configure this once.`
       process.exit()
     }
 
-    const medusaLocation = conf.get(`medusa-location`)
+    const medusaLocation = conf.get(`oryx-location`)
 
     if (!medusaLocation) {
       console.error(
         `
 You haven't set the path yet to your cloned
-version of medusa. Do so now by running:
-medusa-dev --set-path-to-repo /path/to/my/cloned/version/medusa
+version of oryx. Do so now by running:
+oryx-dev --set-path-to-repo /path/to/my/cloned/version/oryx
 `
       )
       process.exit()
@@ -101,26 +95,18 @@ medusa-dev --set-path-to-repo /path/to/my/cloned/version/medusa
       .map((dirName) => {
         try {
           const localPkg = JSON.parse(
-            fs.readFileSync(
-              path.join(medusaLocation, `packages`, dirName, `package.json`)
-            )
+            fs.readFileSync(path.join(medusaLocation, `packages`, dirName, `package.json`))
           )
 
           if (localPkg?.name) {
-            packageNameToPath.set(
-              localPkg.name,
-              path.join(medusaLocation, `packages`, dirName)
-            )
+            packageNameToPath.set(localPkg.name, path.join(medusaLocation, `packages`, dirName))
             return localPkg.name
           }
         } catch (error) {
           // fallback to generic one
         }
 
-        packageNameToPath.set(
-          dirName,
-          path.join(medusaLocation, `packages`, dirName)
-        )
+        packageNameToPath.set(dirName, path.join(medusaLocation, `packages`, dirName))
         return dirName
       })
 
@@ -134,20 +120,18 @@ medusa-dev --set-path-to-repo /path/to/my/cloned/version/medusa
     if (!argv.packages && _.isEmpty(localPackages)) {
       console.error(
         `
-You haven't got any medusa dependencies into your current package.json
+You haven't got any oryx dependencies into your current package.json
 You probably want to pass in a list of packages to start
 developing on! For example:
-medusa-dev --packages medusa medusa-js
+oryx-dev --packages oryx oryx-js
 If you prefer to place them in your package.json dependencies instead,
-medusa-dev will pick them up.
+oryx-dev will pick them up.
 `
       )
       if (!argv.forceInstall) {
         process.exit()
       } else {
-        console.log(
-          `Continuing other dependencies installation due to "--forceInstall" flag`
-        )
+        console.log(`Continuing other dependencies installation due to "--forceInstall" flag`)
       }
     }
 

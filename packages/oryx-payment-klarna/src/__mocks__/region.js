@@ -1,4 +1,4 @@
-import { IdMap } from "medusa-test-utils"
+import { IdMap } from "oryx-test-utils"
 
 export const RegionServiceMock = {
   retrieve: jest.fn().mockImplementation((regionId) => {

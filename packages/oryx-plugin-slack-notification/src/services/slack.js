@@ -4,7 +4,7 @@ import { BaseService } from "medusa-interfaces"
 
 class SlackService extends BaseService {
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    {
    *      show_discount_code: If set to true the discount code used will be
    *        displayed in the order channel.

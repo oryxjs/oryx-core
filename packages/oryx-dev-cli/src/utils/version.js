@@ -1,4 +1,4 @@
 exports.getVersionInfo = () => {
   const { version: devCliVersion } = require(`../../package.json`);
-  return `Medusa Dev CLI version: ${devCliVersion}`;
+  return `Oryx Dev CLI version: ${devCliVersion}`;
 };

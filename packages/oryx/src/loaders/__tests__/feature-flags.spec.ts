@@ -9,17 +9,14 @@ const getFolderTestTargetDirectoryPath = (folderName: string): string => {
   return resolve(distTestTargetDirectorPath, folderName)
 }
 
-const buildFeatureFlag = (
-  key: string,
-  defaultVal: string | boolean
-): string => {
+const buildFeatureFlag = (key: string, defaultVal: string | boolean): string => {
   const snakeCaseKey = key.replace(/-/g, "_")
 
   return `
     export default {
       description: "${key} descr",
       key: "${snakeCaseKey}",
-      env_key: "MEDUSA_FF_${snakeCaseKey.toUpperCase()}",
+      env_key: "ORYX_FF_${snakeCaseKey.toUpperCase()}",
       default_val: ${defaultVal},
     }
   `
@@ -73,11 +70,7 @@ describe("feature flags", () => {
       buildFeatureFlag("flag-1", true)
     )
 
-    const flags = await loadFeatureFlags(
-      {},
-      undefined,
-      getFolderTestTargetDirectoryPath("flags")
-    )
+    const flags = await loadFeatureFlags({}, undefined, getFolderTestTargetDirectoryPath("flags"))
 
     expect(flags.isFeatureEnabled("flag_1")).toEqual(true)
   })
@@ -90,11 +83,7 @@ describe("feature flags", () => {
       buildFeatureFlag("flag-1", true)
     )
 
-    const flags = await loadFeatureFlags(
-      {},
-      undefined,
-      getFolderTestTargetDirectoryPath("flags")
-    )
+    const flags = await loadFeatureFlags({}, undefined, getFolderTestTargetDirectoryPath("flags"))
 
     expect(flags.isFeatureEnabled("flag_1")).toEqual(false)
   })

@@ -9,7 +9,7 @@ import pkg from "../../package.json"
 export const buildFFCli = (cli) => {
   cli.command({
     command: `ff`,
-    desc: "Manage Medusa feature flags",
+    desc: "Manage Oryx feature flags",
     builder: (yargs) => {
       yargs
         .command({
@@ -92,13 +92,13 @@ export const buildFFCli = (cli) => {
 
 const getRepoRoot = () => {
   const conf = new Configstore(pkg.name)
-  const medusaLocation = conf.get(`medusa-location`)
+  const medusaLocation = conf.get(`oryx-location`)
 
   if (!medusaLocation) {
     console.error(
       `
 You haven't set the path yet to your cloned
-version of medusa. Do so now by running:
+version of oryx. Do so now by running:
 medusa-dev --set-path-to-repo /path/to/my/cloned/version/medusa
 `
     )
@@ -117,7 +117,7 @@ const buildFlagsGlob = (repoRoot) => {
   return path.join(
     repoRoot,
     "packages",
-    "medusa",
+    "oryx",
     "dist",
     "loaders",
     "feature-flags",
@@ -129,7 +129,7 @@ const buildPath = (kebabCaseName, repoRoot) => {
   return path.join(
     repoRoot,
     "packages",
-    "medusa",
+    "oryx",
     "src",
     "loaders",
     "feature-flags",
@@ -143,7 +143,7 @@ const collectSettings = (name, description) => {
     key: snakeCaseName,
     description: description,
     defaultValue: false,
-    envKey: `MEDUSA_FF_${snakeCaseName.toUpperCase()}`,
+    envKey: `ORYX_FF_${snakeCaseName.toUpperCase()}`,
   }
 }
 
@@ -156,7 +156,7 @@ const writeFeatureFlag = (settings, featureFlagPath) => {
 const logFeatureFlagUsage = (flagPath, flagSettings) => {
   console.log(`Feature flag created: ${flagPath}`)
   console.log(`
-To use this feature flag, add the following to your medusa-config.js:
+To use this feature flag, add the following to your oryx-config.js:
   
   {
     ...,

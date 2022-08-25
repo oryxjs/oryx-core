@@ -1,6 +1,6 @@
 import _ from "lodash"
 import Stripe from "stripe"
-import { PaymentService } from "medusa-interfaces"
+import { PaymentService } from "oryx-interfaces"
 
 class GiropayProviderService extends PaymentService {
   static identifier = "stripe-giropay"

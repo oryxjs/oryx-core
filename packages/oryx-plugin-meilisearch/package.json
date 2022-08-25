@@ -3,6 +3,7 @@
   "version": "0.2.4",
   "description": "A starter for Oryx projects.",
   "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/oryxjs/oryx",

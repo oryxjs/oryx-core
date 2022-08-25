@@ -2,16 +2,16 @@ const path = require(`path`)
 const resolveCwd = require(`resolve-cwd`)
 const yargs = require(`yargs`)
 const existsSync = require(`fs-exists-cached`).sync
-const { setTelemetryEnabled } = require("medusa-telemetry")
+// const { setTelemetryEnabled } = require("medusa-telemetry")
 
 const { getLocalMedusaVersion } = require(`./util/version`)
 const { didYouMean } = require(`./did-you-mean`)
 
 const reporter = require("./reporter").default
 const { newStarter } = require("./commands/new")
-const { whoami } = require("./commands/whoami")
-const { login } = require("./commands/login")
-const { link } = require("./commands/link")
+// const { whoami } = require("./commands/whoami")
+// const { login } = require("./commands/login")
+// const { link } = require("./commands/link")
 
 const handlerP = fn => (...args) => {
   Promise.resolve(fn(...args)).then(
@@ -50,10 +50,11 @@ function buildLocalCommands(cli, isLocalProject) {
 
     try {
       const cmdPath = resolveCwd.silent(
-        `@medusajs/medusa/dist/commands/${command}`
+        `@oryxjs/oryx/dist/commands/${command}`
       )
       return require(cmdPath).default
     } catch (err) {
+      console.log(err)
       cli.showHelp()
     }
   }
@@ -117,31 +118,31 @@ function buildLocalCommands(cli, isLocalProject) {
             type: `string`,
             describe: `The database host to use for database setup and migrations.`,
           }),
-      desc: `Create a new Medusa project.`,
+      desc: `Create a new Oryx project.`,
       handler: handlerP(newStarter),
     })
-    .command({
-      command: `telemetry`,
-      describe: `Enable or disable collection of anonymous usage data.`,
-      builder: yargs =>
-        yargs
-          .option(`enable`, {
-            type: `boolean`,
-            description: `Enable telemetry (default)`,
-          })
-          .option(`disable`, {
-            type: `boolean`,
-            description: `Disable telemetry`,
-          }),
+    // .command({
+    //   command: `telemetry`,
+    //   describe: `Enable or disable collection of anonymous usage data.`,
+    //   builder: yargs =>
+    //     yargs
+    //       .option(`enable`, {
+    //         type: `boolean`,
+    //         description: `Enable telemetry (default)`,
+    //       })
+    //       .option(`disable`, {
+    //         type: `boolean`,
+    //         description: `Disable telemetry`,
+    //       }),
 
-      handler: handlerP(({ enable, disable }) => {
-        const enabled = Boolean(enable) || !disable
-        setTelemetryEnabled(enabled)
-        reporter.info(
-          `Telemetry collection ${enabled ? `enabled` : `disabled`}`
-        )
-      }),
-    })
+    //   handler: handlerP(({ enable, disable }) => {
+    //     const enabled = Boolean(enable) || !disable
+    //     setTelemetryEnabled(enabled)
+    //     reporter.info(
+    //       `Telemetry collection ${enabled ? `enabled` : `disabled`}`
+    //     )
+    //   }),
+    // })
     .command({
       command: `seed`,
       desc: `Migrates and populates the database with the provided file.`,
@@ -180,41 +181,41 @@ function buildLocalCommands(cli, isLocalProject) {
         })
       ),
     })
-    .command({
-      command: `whoami`,
-      desc: `View the details of the currently logged in user.`,
-      handler: handlerP(whoami),
-    })
-    .command({
-      command: `link`,
-      desc: `Creates your Medusa Cloud user in your local database for local testing.`,
-      builder: _ =>
-        _.option(`su`, {
-          alias: `skip-local-user`,
-          type: `boolean`,
-          default: false,
-          describe: `If set a user will not be created in the database.`,
-        }).option(`develop`, {
-          type: `boolean`,
-          default: false,
-          describe: `If set medusa develop will be run after successful linking.`,
-        }),
-      handler: handlerP(argv => {
-        if (!isLocalProject) {
-          console.log("must be a local project")
-          cli.showHelp()
-        }
+    // .command({
+    //   command: `whoami`,
+    //   desc: `View the details of the currently logged in user.`,
+    //   handler: handlerP(whoami),
+    // })
+    // .command({
+    //   command: `link`,
+    //   desc: `Creates your Medusa Cloud user in your local database for local testing.`,
+    //   builder: _ =>
+    //     _.option(`su`, {
+    //       alias: `skip-local-user`,
+    //       type: `boolean`,
+    //       default: false,
+    //       describe: `If set a user will not be created in the database.`,
+    //     }).option(`develop`, {
+    //       type: `boolean`,
+    //       default: false,
+    //       describe: `If set medusa develop will be run after successful linking.`,
+    //     }),
+    //   handler: handlerP(argv => {
+    //     if (!isLocalProject) {
+    //       console.log("must be a local project")
+    //       cli.showHelp()
+    //     }
 
-        const args = { ...argv, ...projectInfo, useYarn }
+    //     const args = { ...argv, ...projectInfo, useYarn }
 
-        return link(args)
-      }),
-    })
-    .command({
-      command: `login`,
-      desc: `Logs you into Medusa Cloud.`,
-      handler: handlerP(login),
-    })
+    //     return link(args)
+    //   }),
+    // })
+    // .command({
+    //   command: `login`,
+    //   desc: `Logs you into Medusa Cloud.`,
+    //   handler: handlerP(login),
+    // })
     .command({
       command: `develop`,
       desc: `Start development server. Watches file and rebuilds when something changes`,
@@ -309,8 +310,8 @@ function isLocalMedusaProject() {
       `./package.json`
     ))
     inMedusaProject =
-      (dependencies && dependencies["@medusajs/medusa"]) ||
-      (devDependencies && devDependencies["@medusajs/medusa"])
+      (dependencies && dependencies["@oryxjs/oryx"]) ||
+      (devDependencies && devDependencies["@oryxjs/oryx"])
   } catch (err) {
     /* ignore */
   }
@@ -327,11 +328,11 @@ function getVersionInfo() {
       medusaVersion = `unknown`
     }
 
-    return `Medusa CLI version: ${version}
-Medusa version: ${medusaVersion}
-  Note: this is the Medusa version for the site at: ${process.cwd()}`
+    return `Oryx CLI version: ${version}
+    Oryx version: ${medusaVersion}
+  Note: this is the Oryx version for the site at: ${process.cwd()}`
   } else {
-    return `Medusa CLI version: ${version}`
+    return `Oryx CLI version: ${version}`
   }
 }
 
@@ -340,7 +341,7 @@ module.exports = argv => {
   const isLocalProject = isLocalMedusaProject()
 
   cli
-    .scriptName(`medusa`)
+    .scriptName(`oryx`)
     .usage(`Usage: $0 <command> [options]`)
     .alias(`h`, `help`)
     .alias(`v`, `version`)
@@ -369,7 +370,7 @@ module.exports = argv => {
   try {
     cli.version(
       `version`,
-      `Show the version of the Medusa CLI and the Medusa package in the current project`,
+      `Show the version of the Oryx CLI and the Oryx package in the current project`,
       getVersionInfo()
     )
   } catch (e) {

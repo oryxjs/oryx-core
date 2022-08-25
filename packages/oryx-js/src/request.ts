@@ -37,11 +37,7 @@ class Client {
     this.config = { ...defaultConfig, ...config }
   }
 
-  shouldRetryCondition(
-    err: AxiosError,
-    numRetries: number,
-    maxRetries: number
-  ): boolean {
+  shouldRetryCondition(err: AxiosError, numRetries: number, maxRetries: number): boolean {
     // Obviously, if we have reached max. retries we stop
     if (numRetries >= maxRetries) {
       return false
@@ -83,17 +79,12 @@ class Client {
   normalizeHeader(header: string): string {
     return header
       .split("-")
-      .map(
-        (text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
-      )
+      .map((text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase())
       .join("-")
   }
 
   requiresAuthentication(path, method): boolean {
-    return (
-      path.startsWith("/admin") &&
-      unAuthenticatedAdminEndpoints[path] !== method
-    )
+    return path.startsWith("/admin") && unAuthenticatedAdminEndpoints[path] !== method
   }
 
   /**
@@ -105,6 +96,7 @@ class Client {
    * @param {object} customHeaders user supplied headers
    * @return {object}
    */
+
   setHeaders(
     userHeaders: RequestOptions,
     method: RequestMethod,
@@ -128,12 +120,7 @@ class Client {
       defaultHeaders["Idempotency-Key"] = uuidv4()
     }
 
-    return Object.assign(
-      {},
-      defaultHeaders,
-      this.normalizeHeaders(userHeaders),
-      customHeaders
-    )
+    return Object.assign({}, defaultHeaders, this.normalizeHeaders(userHeaders), customHeaders)
   }
 
   /**
@@ -143,6 +130,7 @@ class Client {
    * @param {Config} config user supplied configurations
    * @return {AxiosInstance}
    */
+
   createClient(config: Config): AxiosInstance {
     const client = axios.create({
       baseURL: config.baseUrl,
@@ -157,11 +145,7 @@ class Client {
       shouldRetry: (err: AxiosError): boolean => {
         const cfg = rax.getConfig(err)
         if (cfg) {
-          return this.shouldRetryCondition(
-            err,
-            cfg.currentRetryAttempt ?? 1,
-            cfg.retry ?? 3
-          )
+          return this.shouldRetryCondition(err, cfg.currentRetryAttempt ?? 1, cfg.retry ?? 3)
         } else {
           return false
         }
@@ -180,6 +164,7 @@ class Client {
    * @param customHeaders custom request headers
    * @return
    */
+
   async request(
     method: RequestMethod,
     path: string,

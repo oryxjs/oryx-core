@@ -52,7 +52,7 @@
     "joi-objectid": "^3.0.1",
     "meant": "^1.0.1",
     "medusa-core-utils": "npm:oryx-core-utils@1.1.31",
-    "medusa-telemetry": "file:../oryx-telemetry",
+    "medusa-telemetry": "npm:oryx-telemetry@0.0.11",
     "netrc-parser": "^3.1.6",
     "open": "^8.0.6",
     "ora": "^5.4.1",

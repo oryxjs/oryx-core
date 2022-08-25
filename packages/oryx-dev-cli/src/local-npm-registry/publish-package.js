@@ -1,17 +1,16 @@
 const fs = require(`fs-extra`)
 const path = require(`path`)
+const { satisfies } = require("compare-versions")
 
 const { promisifiedSpawn } = require(`../utils/promisified-spawn`)
 const { registryUrl } = require(`./verdaccio-config`)
 
-const NPMRCContent = `${registryUrl.replace(
+const NPMRCContent = `registry=http://localhost:4873/\n${registryUrl.replace(
   /https?:/g,
   ``
-)}/:_authToken="medusa-dev"`
+)}/:_authToken="oryx-dev"`
 
-const {
-  getMonorepoPackageJsonPath,
-} = require(`../utils/get-monorepo-package-json-path`)
+const { getMonorepoPackageJsonPath } = require(`../utils/get-monorepo-package-json-path`)
 const { registerCleanupTask } = require(`./cleanup-tasks`)
 
 /**
@@ -33,18 +32,12 @@ const adjustPackageJson = ({
   // adjust version selector to point to dev version of package so local registry is used
   // for dependencies.
 
-  const monorepoPKGjsonString = fs.readFileSync(
-    monoRepoPackageJsonPath,
-    `utf-8`
-  )
+  const monorepoPKGjsonString = fs.readFileSync(monoRepoPackageJsonPath, `utf-8`)
   const monorepoPKGjson = JSON.parse(monorepoPKGjsonString)
 
   monorepoPKGjson.version = `${monorepoPKGjson.version}-dev-${versionPostFix}`
   packagesToPublish.forEach((packageThatWillBePublished) => {
-    if (
-      monorepoPKGjson.dependencies &&
-      monorepoPKGjson.dependencies[packageThatWillBePublished]
-    ) {
+    if (monorepoPKGjson.dependencies && monorepoPKGjson.dependencies[packageThatWillBePublished]) {
       const currentVersion = JSON.parse(
         fs.readFileSync(
           getMonorepoPackageJsonPath({
@@ -96,6 +89,11 @@ const createTemporaryNPMRC = ({ pathToPackage }) => {
   })
 }
 
+const getNPMVersion = async () => {
+  const { stdout: version } = await promisifiedSpawn(["npm", ["-v"], { stdio: "pipe" }])
+  return version.toString()
+}
+
 const publishPackage = async ({
   packageName,
   packagesToPublish,
@@ -121,24 +119,25 @@ const publishPackage = async ({
 
   const uncreateTemporaryNPMRC = createTemporaryNPMRC({ pathToPackage })
 
+  const npmVersion = await getNPMVersion()
   // npm publish
   const publishCmd = [
     `npm`,
-    [`publish`, `--tag`, `medusa-dev`, `--registry=${registryUrl}`],
+    [`publish`, `--tag`, `oryx-dev`],
     {
       cwd: pathToPackage,
     },
   ]
 
-  console.log(
-    `Publishing ${packageName}@${newPackageVersion} to local registry`
-  )
+  if (satisfies(npmVersion, ">=8.5.0")) {
+    publishCmd[1][3] = "--no-workspaces"
+  }
+
+  console.log(`Publishing ${packageName}@${newPackageVersion} to local registry`)
   try {
     await promisifiedSpawn(publishCmd)
 
-    console.log(
-      `Published ${packageName}@${newPackageVersion} to local registry`
-    )
+    console.log(`Published ${packageName}@${newPackageVersion} to local registry`)
   } catch (e) {
     console.error(`Failed to publish ${packageName}@${newPackageVersion}`, e)
     process.exit(1)

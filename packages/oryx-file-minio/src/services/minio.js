@@ -2,8 +2,8 @@ import stream from "stream"
 import aws from "aws-sdk"
 import { parse } from "path"
 import fs from "fs"
-import { AbstractFileService } from "@medusajs/medusa"
-import { MedusaError } from "medusa-core-utils"
+import { AbstractFileService } from "@oryxjs/oryx"
+import { MedusaError } from "oryx-core-utils"
 
 class MinioService extends AbstractFileService {
   constructor({}, options) {

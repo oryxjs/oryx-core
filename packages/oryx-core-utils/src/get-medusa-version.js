@@ -5,7 +5,7 @@ export const getMedusaVersion = () => {
     return require(path.join(
       process.cwd(),
       `node_modules`,
-      `@medusajs/medusa`,
+      `@oryxjs/oryx`,
       `package.json`
     )).version
   } catch (e) {

@@ -1,6 +1,6 @@
 import axios from "axios"
 import _ from "lodash"
-import { PaymentService } from "medusa-interfaces"
+import { PaymentService } from "oryx-interfaces"
 
 class KlarnaProviderService extends PaymentService {
   static identifier = "klarna"

@@ -3,7 +3,7 @@ import twilio from "twilio"
 
 class TwilioSmsService extends BaseService {
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    e.g.
    *    {
    *      account_sid: "1234",

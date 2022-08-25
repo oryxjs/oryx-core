@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { PaymentService } from "medusa-interfaces"
+import { PaymentService } from "oryx-interfaces"
 
 class MobilePayAdyenService extends PaymentService {
   static identifier = "mobilepay-adyen"

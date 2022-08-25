@@ -1,6 +1,9 @@
 {
   "name": "oryx-core-root",
   "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "workspaces": {
     "packages": [
       "packages/*"

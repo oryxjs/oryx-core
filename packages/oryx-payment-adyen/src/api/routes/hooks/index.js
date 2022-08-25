@@ -2,12 +2,12 @@ import { Router } from "express"
 import cors from "cors"
 import bodyParser from "body-parser"
 import middlewares from "../../middlewares"
-import { getConfigFile } from "medusa-core-utils"
+import { getConfigFile } from "oryx-core-utils"
 
 const route = Router()
 
 export default (app, rootDirectory) => {
-  const { configModule } = getConfigFile(rootDirectory, `medusa-config`)
+  const { configModule } = getConfigFile(rootDirectory, `oryx-config`)
   const config = (configModule && configModule.projectConfig) || {}
 
   const storeCors = config.store_cors || ""

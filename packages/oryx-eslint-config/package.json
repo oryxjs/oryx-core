@@ -1,10 +1,10 @@
 {
-  "name": "@oryxjs/oryx-eslint-config",
+  "name": "oryx-eslint-config",
   "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "repository": "https://github.com/oryxjs/oryx-core",
   "main": "index.js",

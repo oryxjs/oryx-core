@@ -182,10 +182,7 @@ import {
   OneToOne,
 } from "typeorm"
 import { DbAwareColumn, resolveDbType } from "../utils/db-aware-column"
-import {
-  FeatureFlagColumn,
-  FeatureFlagDecorators,
-} from "../utils/feature-flag-decorators"
+import { FeatureFlagColumn, FeatureFlagDecorators } from "../utils/feature-flag-decorators"
 
 import { Address } from "./address"
 import { Customer } from "./customer"
@@ -235,9 +232,13 @@ export class Cart extends SoftDeletableEntity {
   @JoinColumn({ name: "shipping_address_id" })
   shipping_address: Address | null
 
-  @OneToMany(() => LineItem, (lineItem) => lineItem.cart, {
-    cascade: ["insert", "remove"],
-  })
+  @OneToMany(
+    () => LineItem,
+    (lineItem) => lineItem.cart,
+    {
+      cascade: ["insert", "remove"],
+    }
+  )
   items: LineItem[]
 
   @Index()
@@ -286,9 +287,13 @@ export class Cart extends SoftDeletableEntity {
 
   payment_session: PaymentSession | null
 
-  @OneToMany(() => PaymentSession, (paymentSession) => paymentSession.cart, {
-    cascade: true,
-  })
+  @OneToMany(
+    () => PaymentSession,
+    (paymentSession) => paymentSession.cart,
+    {
+      cascade: true,
+    }
+  )
   payment_sessions: PaymentSession[]
 
   @Index()
@@ -299,9 +304,13 @@ export class Cart extends SoftDeletableEntity {
   @JoinColumn({ name: "payment_id" })
   payment: Payment
 
-  @OneToMany(() => ShippingMethod, (method) => method.cart, {
-    cascade: ["soft-remove", "remove"],
-  })
+  @OneToMany(
+    () => ShippingMethod,
+    (method) => method.cart,
+    {
+      cascade: ["soft-remove", "remove"],
+    }
+  )
   shipping_methods: ShippingMethod[]
 
   @DbAwareColumn({ type: "enum", enum: CartType, default: "default" })

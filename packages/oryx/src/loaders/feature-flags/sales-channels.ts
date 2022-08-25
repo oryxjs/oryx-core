@@ -3,7 +3,7 @@ import { FlagSettings } from "../../types/feature-flags"
 const SalesChannelFeatureFlag: FlagSettings = {
   key: "sales_channels",
   default_val: false,
-  env_key: "MEDUSA_FF_SALES_CHANNELS",
+  env_key: "ORYX_FF_SALES_CHANNELS",
   description: "[WIP] Enable the sales channels feature",
 }
 

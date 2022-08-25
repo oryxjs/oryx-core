@@ -1,4 +1,4 @@
-import { PaymentService } from "medusa-interfaces"
+import { PaymentService } from "oryx-interfaces"
 
 class ManualPaymentService extends PaymentService {
   static identifier = "manual"

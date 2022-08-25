@@ -29,7 +29,7 @@ Go back to overview and click `Install app`. This should generate a token, that 
 
 ### Add the required plugin options
 
-Update your `medusa-config.js` with the following:
+Update your `oryx-config.js` with the following:
 
 ```js
 //Shopify keys

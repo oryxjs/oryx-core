@@ -8,7 +8,7 @@ import isTruthy from "./util/is-truthy"
 class Store {
   constructor() {
     try {
-      this.config_ = new Configstore(`medusa`, {}, { globalConfigPath: true })
+      this.config_ = new Configstore(`oryx`, {}, { globalConfigPath: true })
     } catch (e) {
       this.config_ = new InMemConfig()
     }
@@ -16,7 +16,7 @@ class Store {
     const baseDir = path.dirname(this.config_.path)
     this.outbox_ = new OutboxStore(baseDir)
 
-    this.disabled_ = isTruthy(process.env.MEDUSA_DISABLE_TELEMETRY)
+    this.disabled_ = isTruthy(process.env.ORYX_DISABLE_TELEMETRY)
   }
 
   getQueueSize() {

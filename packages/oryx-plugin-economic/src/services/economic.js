@@ -8,7 +8,7 @@ const ECONOMIC_BASE_URL = "https://restapi.e-conomic.com"
 
 class EconomicService extends BaseService {
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    {
    *      secret_token: "foo",
    *      agreement_token: "bar",

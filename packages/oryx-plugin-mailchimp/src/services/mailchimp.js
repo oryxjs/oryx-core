@@ -3,7 +3,7 @@ import Mailchimp from "mailchimp-api-v3"
 
 class MailchimpService extends BaseService {
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    e.g.
    *    {
    *      api_key: Mailchimp api key

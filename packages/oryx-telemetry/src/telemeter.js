@@ -11,7 +11,7 @@ import showAnalyticsNotification from "./util/show-notification"
 import { isCI, getCIName } from "./util/is-ci"
 import Store from "./store"
 
-const MEDUSA_TELEMETRY_VERBOSE = process.env.MEDUSA_TELEMETRY_VERBOSE || false
+const MEDUSA_TELEMETRY_VERBOSE = process.env.ORYX_TELEMETRY_VERBOSE || false
 
 class Telemeter {
   constructor(options = {}) {
@@ -78,12 +78,12 @@ class Telemeter {
 
   getMedusaVersion() {
     try {
-      const packageJson = require.resolve(`@medusajs/medusa/package.json`)
+      const packageJson = require.resolve(`@oryxjs/oryx/package.json`)
       const { version } = JSON.parse(fs.readFileSync(packageJson, `utf-8`))
       return version
     } catch (e) {
-      if (isTruthy(MEDUSA_TELEMETRY_VERBOSE)) {
-        console.error("failed to get medusa version", e)
+      if (isTruthy(ORYX_TELEMETRY_VERBOSE)) {
+        console.error("failed to get oryx version", e)
       }
     }
     return `-0.0.0`
@@ -93,7 +93,7 @@ class Telemeter {
     try {
       const jsonfile = join(
         require
-          .resolve(`@medusajs/medusa-cli`) // Resolve where current gatsby-cli would be loaded from.
+          .resolve(`@oryxjs/oryx-cli`) // Resolve where current gatsby-cli would be loaded from.
           .split(sep)
           .slice(0, -2) // drop lib/index.js
           .join(sep),
@@ -103,8 +103,8 @@ class Telemeter {
       const { version } = require(jsonfile)
       return version
     } catch (e) {
-      if (isTruthy(MEDUSA_TELEMETRY_VERBOSE)) {
-        console.error("failed to get medusa version", e)
+      if (isTruthy(ORYX_TELEMETRY_VERBOSE)) {
+        console.error("failed to get oryx version", e)
       }
     }
 

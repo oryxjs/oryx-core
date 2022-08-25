@@ -1,9 +1,9 @@
 {
-  "name": "@oryxjs/oryx-tsconfig",
+  "name": "oryx-tsconfig",
   "version": "1.0.0",
+  "private": true,
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "repository": "https://github.com/oryxjs/oryx-core",
   "main": "index.js",

@@ -6,7 +6,7 @@ import { getConfigFile, MedusaError } from "medusa-core-utils"
 
 const app = Router()
 export default (rootDirectory) => {
-  const { configModule } = getConfigFile(rootDirectory, "medusa-config")
+  const { configModule } = getConfigFile(rootDirectory, "oryx-config")
   const { projectConfig } = configModule
   const corsOptions = {
     origin: projectConfig.store_cors.split(","),

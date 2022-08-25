@@ -7,7 +7,7 @@ import cors from "cors"
 const route = Router()
 
 export default (app, rootDirectory) => {
-  const { configModule } = getConfigFile(rootDirectory, `medusa-config`)
+  const { configModule } = getConfigFile(rootDirectory, `oryx-config`)
   const config = (configModule && configModule.projectConfig) || {}
 
   const storeCors = config.store_cors || ""

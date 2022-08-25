@@ -30,13 +30,13 @@ export const getPackageManager = (npmConfigUserAgent) => {
   return `npm`
 }
 
-const removeUndefined = (obj) => {
-  return Object.fromEntries(
-    Object.entries(obj)
-      .filter(([_, v]) => v != null)
-      .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v) : v])
-  )
-}
+// const removeUndefined = (obj) => {
+//   return Object.fromEntries(
+//     Object.entries(obj)
+//       .filter(([_, v]) => v != null)
+//       .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v) : v])
+//   )
+// }
 
 const spawnWithArgs = (file, args, options) =>
   execa(file, args, { stdio: "ignore", preferLocal: false, ...options })
@@ -81,10 +81,7 @@ const maybeCreateGitIgnore = async (rootPath) => {
   }
 
   reporter.info(`Creating minimal .gitignore in ${rootPath}`)
-  await fs.writeFile(
-    sysPath.join(rootPath, `.gitignore`),
-    `.cache\nnode_modules\npublic\n`
-  )
+  await fs.writeFile(sysPath.join(rootPath, `.gitignore`), `.cache\nnode_modules\npublic\n`)
   reporter.success(`Created .gitignore in ${rootPath}`)
 }
 
@@ -96,7 +93,7 @@ const createInitialGitCommit = async (rootPath, starterUrl) => {
   // use execSync instead of spawn to handle git clients using
   // pgp signatures (with password)
   try {
-    execSync(`git commit -m "Initial commit from medusa: (${starterUrl})"`, {
+    execSync(`git commit -m "Initial commit from oryx: (${starterUrl})"`, {
       cwd: rootPath,
     })
   } catch {
@@ -115,7 +112,7 @@ const install = async (rootPath, verbose) => {
 
   process.chdir(rootPath)
 
-  const npmConfigUserAgent = process.env.npm_config_user_agent
+  // const npmConfigUserAgent = process.env.npm_config_user_agent
 
   try {
     if (getPackageManager() === `yarn` && checkForYarn()) {
@@ -150,7 +147,7 @@ const copy = async (starterPath, rootPath) => {
       `You can't create a starter from the existing directory. If you want to
       create a new project in the current directory, the trailing dot isn't
       necessary. If you want to create a project from a local starter, run
-      something like "medusa new my-medusa-store ../local-medusa-starter"`
+      something like "oryx new my-oryx-store ../local-oryx-starter"`
     )
   }
 
@@ -185,14 +182,9 @@ const clone = async (hostInfo, rootPath, keepGit, verbose = false) => {
 
   const stop = spin(`Creating new project from git: ${url}`)
 
-  const args = [
-    `clone`,
-    ...branch,
-    url,
-    rootPath,
-    `--recursive`,
-    `--depth=1`,
-  ].filter((arg) => Boolean(arg))
+  const args = [`clone`, ...branch, url, rootPath, `--recursive`, `--depth=1`].filter((arg) =>
+    Boolean(arg)
+  )
 
   await execa(`git`, args, {})
     .then(() => {
@@ -213,14 +205,18 @@ const clone = async (hostInfo, rootPath, keepGit, verbose = false) => {
 
   await install(rootPath, verbose)
   const isGit = await isAlreadyGitRepository()
-  if (!isGit) await gitInit(rootPath)
+  if (!isGit) {
+    await gitInit(rootPath)
+  }
   await maybeCreateGitIgnore(rootPath)
-  if (!isGit) await createInitialGitCommit(rootPath, url)
+  if (!isGit) {
+    await createInitialGitCommit(rootPath, url)
+  }
 }
 
 const getMedusaConfig = (rootPath) => {
   try {
-    const configPath = sysPath.join(rootPath, "medusa-config.js")
+    const configPath = sysPath.join(rootPath, "oryx-config.js")
     if (existsSync(configPath)) {
       const resolved = sysPath.resolve(configPath)
       const configModule = require(resolved)
@@ -230,26 +226,25 @@ const getMedusaConfig = (rootPath) => {
   } catch (err) {
     return null
   }
-  return {}
 }
 
 const getPaths = async (starterPath, rootPath) => {
-  let selectedOtherStarter = false
+  const selectedOtherStarter = false
 
   // set defaults if no root or starter has been set yet
   rootPath = rootPath || process.cwd()
-  starterPath = starterPath || `medusajs/medusa-starter-default`
+  starterPath = starterPath || `oryxjs/oryx-starter-default`
 
   return { starterPath, rootPath, selectedOtherStarter }
 }
 
-const successMessage = (path) => {
-  reporter.info(`Your new Medusa project is ready for you! To start developing run:
+// const successMessage = (path) => {
+//   reporter.info(`Your new Medusa project is ready for you! To start developing run:
 
-  cd ${path}
-  medusa develop
-`)
-}
+//   cd ${path}
+//   medusa develop
+// `)
+// }
 
 const setupEnvVars = async (rootPath) => {
   const templatePath = sysPath.join(rootPath, ".env.template")
@@ -302,21 +297,18 @@ const attemptSeed = async (rootPath) => {
 /**
  * Main function that clones or copies the starter.
  */
+
 export const newStarter = async (args) => {
   const { starter, root, verbose, seed, keepGit } = args
 
-  const { starterPath, rootPath, selectedOtherStarter } = await getPaths(
-    starter,
-    root
-  )
+  const { starterPath, rootPath /* , selectedOtherStarter */ } = await getPaths(starter, root)
 
   const urlObject = url.parse(rootPath)
 
   if (urlObject.protocol && urlObject.host) {
-    const isStarterAUrl =
-      starter && !url.parse(starter).hostname && !url.parse(starter).protocol
+    const isStarterAUrl = starter && !url.parse(starter).hostname && !url.parse(starter).protocol
 
-    if (/medusa-starter/gi.test(rootPath) && isStarterAUrl) {
+    if (/oryx-starter/gi.test(rootPath) && isStarterAUrl) {
       reporter.panic({
         id: `10000`,
         context: {

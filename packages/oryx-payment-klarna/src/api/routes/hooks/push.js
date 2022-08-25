@@ -1,4 +1,4 @@
-import { MedusaError } from "medusa-core-utils"
+// import { MedusaError } from "medusa-core-utils"
 
 export default async (req, res) => {
   const { klarna_order_id } = req.query

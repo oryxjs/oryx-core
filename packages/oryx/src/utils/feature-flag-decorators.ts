@@ -1,17 +1,17 @@
- import { getConfigFile } from "medusa-core-utils"
+import { getConfigFile } from "medusa-core-utils"
 import { Column, ColumnOptions, Entity, EntityOptions } from "typeorm"
 import featureFlagsLoader from "../loaders/feature-flags"
 import path from "path"
 import { ConfigModule } from "../types/global"
 import { FlagRouter } from "./flag-router"
 
- /**
-  * If that file is required in a non node environment then the setImmediate timer does not exists.
-  * This can happen when a client package require a server based package and that one of the import
-  * require to import that file which is using the setImmediate.
-  * In order to take care of those cases, the setImmediate timer will use the one provided by the api (node)
-  * if possible and will provide a mock in a browser like environment.
-  */
+/**
+ * If that file is required in a non node environment then the setImmediate timer does not exists.
+ * This can happen when a client package require a server based package and that one of the import
+ * require to import that file which is using the setImmediate.
+ * In order to take care of those cases, the setImmediate timer will use the one provided by the api (node)
+ * if possible and will provide a mock in a browser like environment.
+ */
 let setImmediate_
 try {
   setImmediate_ = setImmediate
@@ -19,14 +19,14 @@ try {
   console.warn(
     "[feature-flag-decorator.ts] setImmediate will use a mock, this happen when this file is required in a browser environment and should not impact you"
   )
-  setImmediate_ = ((callback: () => void | Promise<void>) => callback())
+  setImmediate_ = (callback: () => void | Promise<void>) => callback()
 }
 
 export function FeatureFlagColumn(
   featureFlag: string,
   columnOptions: ColumnOptions = {}
 ): PropertyDecorator {
-  return function (target, propertyName) {
+  return function(target, propertyName) {
     setImmediate_((): any => {
       const featureFlagRouter = getFeatureFlagRouter()
 
@@ -43,7 +43,7 @@ export function FeatureFlagDecorators(
   featureFlag: string,
   decorators: PropertyDecorator[]
 ): PropertyDecorator {
-  return function (target, propertyName) {
+  return function(target, propertyName) {
     setImmediate_((): any => {
       const featureFlagRouter = getFeatureFlagRouter()
 
@@ -63,8 +63,8 @@ export function FeatureFlagEntity(
   name?: string,
   options?: EntityOptions
 ): ClassDecorator {
-  return function (target: Function): void {
-    target["isFeatureEnabled"] = function (): boolean {
+  return function(target: Function): void {
+    target["isFeatureEnabled"] = function(): boolean {
       const featureFlagRouter = getFeatureFlagRouter()
 
       return featureFlagRouter.isFeatureEnabled(featureFlag)
@@ -74,10 +74,9 @@ export function FeatureFlagEntity(
 }
 
 function getFeatureFlagRouter(): FlagRouter {
-  const { configModule } = getConfigFile(
-    path.resolve("."),
-    `medusa-config`
-  ) as { configModule: ConfigModule }
+  const { configModule } = getConfigFile(path.resolve("."), `oryx-config`) as {
+    configModule: ConfigModule
+  }
 
   return featureFlagsLoader(configModule)
 }

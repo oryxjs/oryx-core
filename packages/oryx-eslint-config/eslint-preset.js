@@ -12,7 +12,7 @@ module.exports = {
         extensions: allExtensions,
       },
       typescript: {
-        project: "apps/*/tsconfig.json",
+        project: "./tsconfig.json",
       },
     },
   },
@@ -37,10 +37,7 @@ module.exports = {
       "error",
       {
         newlinesBetween: "always",
-        groups: [
-          "module",
-          ["parent", "sibling", "index"],
-        ],
+        groups: ["module", ["parent", "sibling", "index"]],
         alphabetize: {
           order: "asc",
           ignoreCase: true,

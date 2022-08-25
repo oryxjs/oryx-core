@@ -8,10 +8,7 @@ const findWorkspaceRoot = require(`find-yarn-workspace-root`)
 const { publishPackagesLocallyAndInstall } = require(`./local-npm-registry`)
 const { checkDepsChanges } = require(`./utils/check-deps-changes`)
 const { getDependantPackages } = require(`./utils/get-dependant-packages`)
-const {
-  setDefaultSpawnStdio,
-  promisifiedSpawn,
-} = require(`./utils/promisified-spawn`)
+const { setDefaultSpawnStdio, promisifiedSpawn } = require(`./utils/promisified-spawn`)
 const { traversePackagesDeps } = require(`./utils/traverse-package-deps`)
 
 let numCopied = 0
@@ -61,10 +58,7 @@ async function watch(
           reject(err)
           return
         } else {
-          setTimeout(
-            () => realCopyPath({ ...arg, retry: retry + 1 }),
-            500 * Math.pow(2, retry)
-          )
+          setTimeout(() => realCopyPath({ ...arg, retry: retry + 1 }), 500 * Math.pow(2, retry))
           return
         }
       }
@@ -78,7 +72,7 @@ async function watch(
       // - medusa/bin/medusa.js
       //  -medusa/cli.js
       //  -medusa-cli/cli.js
-      if (/(bin\/medusa.js|medusa(-cli)?\/cli.js)$/.test(newPath)) {
+      if (/(bin\/oryx.js|oryx(-cli)?\/cli.js)$/.test(newPath)) {
         fs.chmodSync(newPath, `0755`)
       }
 
@@ -134,9 +128,7 @@ async function watch(
     packageNameToPath,
   })
 
-  const allPackagesToWatch = packages
-    ? _.intersection(packages, seenPackages)
-    : seenPackages
+  const allPackagesToWatch = packages ? _.intersection(packages, seenPackages) : seenPackages
 
   const ignoredPackageJSON = new Map()
   const ignorePackageJSONChanges = (packageName, contentArray) => {
@@ -190,9 +182,7 @@ async function watch(
     /[/\\]__mocks__[/\\]/i,
     /\.npmrc/i,
   ].concat(
-    allPackagesIgnoringThemesToWatch.map(
-      (p) => new RegExp(`${p}[\\/\\\\]src[\\/\\\\]`, `i`)
-    )
+    allPackagesIgnoringThemesToWatch.map((p) => new RegExp(`${p}[\\/\\\\]src[\\/\\\\]`, `i`))
   )
   const watchers = _.uniq(
     allPackagesToWatch
@@ -238,16 +228,13 @@ async function watch(
 
       // Copy it over local version.
       // Don't copy over the medusa bin file as that breaks the NPM symlink.
-      if (_.includes(filePath, `dist/medusa-cli.js`)) {
+      if (_.includes(filePath, `dist/oryx-cli.js`)) {
         return
       }
 
       const relativePackageFile = path.relative(prefix, filePath)
 
-      const newPath = path.join(
-        `./node_modules/${packageName}`,
-        relativePackageFile
-      )
+      const newPath = path.join(`./node_modules/${packageName}`, relativePackageFile)
 
       if (relativePackageFile === `package.json`) {
         // package.json files will change during publish to adjust version of package (and dependencies), so ignore
@@ -277,8 +264,7 @@ async function watch(
           waitFor.add(didDepsChangedPromise)
         }
 
-        const { didDepsChanged, packageNotInstalled } =
-          await didDepsChangedPromise
+        const { didDepsChanged, packageNotInstalled } = await didDepsChangedPromise
 
         if (packageNotInstalled) {
           anyPackageNotInstalled = true

@@ -1,6 +1,6 @@
-import { humanizeAmount, zeroDecimalCurrencies } from "medusa-core-utils"
+import { humanizeAmount, zeroDecimalCurrencies } from "oryx-core-utils"
 import PayPal from "@paypal/checkout-server-sdk"
-import { PaymentService } from "medusa-interfaces"
+import { PaymentService } from "oryx-interfaces"
 
 function roundToTwo(num, currency) {
   if (zeroDecimalCurrencies.includes(currency.toLowerCase())) {

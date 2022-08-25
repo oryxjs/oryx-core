@@ -7,7 +7,7 @@ import semver from "semver"
 import util from "util"
 import createCli from "./create-cli"
 // import report from "./reporter"
-import pkg from "../package.json"
+// import pkg from "../package.json"
 // import updateNotifier from "update-notifier"
 // import { ensureWindowsDriveLetterIsUppercase } from "./util/ensure-windows-drive-letter-is-uppercase"
 

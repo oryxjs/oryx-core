@@ -5,7 +5,7 @@ import { humanizeAmount } from "medusa-core-utils"
 
 class SegmentService extends BaseService {
   /**
-   * @param {Object} options - options defined in `medusa-config.js`
+   * @param {Object} options - options defined in `oryx-config.js`
    *    e.g.
    *    {
    *      write_key: Segment write key given in Segment dashboard

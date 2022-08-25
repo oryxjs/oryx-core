@@ -25,7 +25,7 @@ const startServer = () => {
       verdaccioConfig.port,
       verdaccioConfig.storage,
       `1.0.0`,
-      `medusa-dev`,
+      `oryx-dev`,
       (webServer, addr, pkgName, pkgVersion) => {
         // console.log(webServer)
         webServer.listen(addr.port || addr.path, addr.host, () => {

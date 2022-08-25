@@ -88,7 +88,7 @@ function resolvePlugin(pluginName) {
 }
 
 export default async (directory, featureFlagRouter) => {
-  const { configModule } = getConfigFile(directory, `medusa-config`)
+  const { configModule } = getConfigFile(directory, `oryx-config`)
   const { plugins } = configModule
 
   const resolved = plugins.map((plugin) => {

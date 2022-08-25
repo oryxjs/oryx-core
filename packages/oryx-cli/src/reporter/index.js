@@ -2,7 +2,7 @@ import stackTrace from "stack-trace"
 import { ulid } from "ulid"
 import winston from "winston"
 import ora from "ora"
-import { track } from "medusa-telemetry"
+// import { track } from "medusa-telemetry"
 
 import { panicHandler } from "./panic-handler"
 
@@ -54,9 +54,9 @@ export class Reporter {
       message: parsedPanic.message,
     })
 
-    track("PANIC_ERROR_REACHED", {
-      id: data.id,
-    })
+    // track("PANIC_ERROR_REACHED", {
+    //   id: data.id,
+    // })
 
     process.exit(1)
   }

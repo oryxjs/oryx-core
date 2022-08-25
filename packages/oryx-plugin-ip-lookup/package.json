@@ -3,6 +3,7 @@
   "version": "1.2.1",
   "description": "IP lookup middleware for Oryx core",
   "main": "dist/index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/oryxjs/oryx",

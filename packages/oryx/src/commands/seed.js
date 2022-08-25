@@ -29,7 +29,7 @@ const t = async function ({ directory, migrate, seedFile }) {
     }
   }
 
-  const { configModule } = getConfigFile(directory, `medusa-config`)
+  const { configModule } = getConfigFile(directory, `oryx-config`)
 
   const featureFlagRouter = featureFlagLoader(configModule)
 
@@ -143,9 +143,7 @@ const t = async function ({ directory, migrate, seedFile }) {
             })),
           }
 
-          await productVariantService
-            .withTransaction(tx)
-            .create(newProd.id, variant)
+          await productVariantService.withTransaction(tx).create(newProd.id, variant)
         }
       }
     }

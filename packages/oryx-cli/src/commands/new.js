@@ -13,7 +13,7 @@ import prompts from "prompts"
 import { Pool } from "pg"
 import url from "url"
 import { createDatabase } from "pg-god"
-import { track } from "medusa-telemetry"
+// import { track } from "medusa-telemetry"
 import inquirer from "inquirer"
 
 import reporter from "../reporter"
@@ -87,7 +87,7 @@ const createInitialGitCommit = async (rootPath, starterUrl) => {
   // use execSync instead of spawn to handle git clients using
   // pgp signatures (with password)
   try {
-    execSync(`git commit -m "Initial commit from medusa: (${starterUrl})"`, {
+    execSync(`git commit -m "Initial commit from oryx: (${starterUrl})"`, {
       cwd: rootPath,
     })
   } catch {
@@ -145,7 +145,7 @@ const copy = async (starterPath, rootPath) => {
       `You can't create a starter from the existing directory. If you want to
       create a new project in the current directory, the trailing dot isn't
       necessary. If you want to create a project from a local starter, run
-      something like "medusa new my-medusa-store ../local-medusa-starter"`
+      something like "oryx new my-oryx-store ../local-oryx-starter"`
     )
   }
 
@@ -209,7 +209,7 @@ const clone = async (hostInfo, rootPath) => {
 
 const getMedusaConfig = rootPath => {
   try {
-    const configPath = sysPath.join(rootPath, "medusa-config.js")
+    const configPath = sysPath.join(rootPath, "oryx-config.js")
     if (existsSync(configPath)) {
       const resolved = sysPath.resolve(configPath)
       const configModule = require(resolved)
@@ -219,7 +219,7 @@ const getMedusaConfig = rootPath => {
   } catch (err) {
     console.log(err)
     reporter.warn(
-      `Couldn't find a medusa-config.js file; please double check that you have the correct starter installed`
+      `Couldn't find a oryx-config.js file; please double check that you have the correct starter installed`
     )
   }
   return {}
@@ -235,15 +235,15 @@ const getPaths = async (starterPath, rootPath) => {
         type: `text`,
         name: `path`,
         message: `What is your project called?`,
-        initial: `my-medusa-store`,
+        initial: `my-oryx-store`,
       },
       {
         type: `select`,
         name: `starter`,
         message: `What starter would you like to use?`,
         choices: [
-          { title: `medusa-starter-default`, value: `medusa-starter-default` },
-          { title: `(Use a different starter)`, value: `different` },
+          { title: `oryx-starter-default`, value: `oryx-starter-default` },
+          //{ title: `(Use a different starter)`, value: `different` },
         ],
         initial: 0,
       },
@@ -257,22 +257,22 @@ const getPaths = async (starterPath, rootPath) => {
     }
 
     selectedOtherStarter = response.starter === `different`
-    starterPath = `medusajs/${response.starter}`
+    starterPath = `oryxjs/${response.starter}`
     rootPath = response.path
   }
 
   // set defaults if no root or starter has been set yet
   rootPath = rootPath || process.cwd()
-  starterPath = starterPath || `medusajs/medusa-starter-default`
+  starterPath = starterPath || `oryxjs/oryx-starter-default`
 
   return { starterPath, rootPath, selectedOtherStarter }
 }
 
 const successMessage = path => {
-  reporter.info(`Your new Medusa project is ready for you! To start developing run:
+  reporter.info(`Your new Oryx project is ready for you! To start developing run:
 
   cd ${path}
-  medusa develop
+  oryx develop
 `)
 }
 
@@ -461,8 +461,8 @@ const runMigrations = async rootPath => {
 
   const cliPath = sysPath.join(
     `node_modules`,
-    `@medusajs`,
-    `medusa-cli`,
+    `@oryxjs`,
+    `oryx-cli`,
     `cli.js`
   )
 
@@ -518,7 +518,7 @@ const attemptSeed = async rootPath => {
  * Main function that clones or copies the starter.
  */
 export const newStarter = async args => {
-  track("CLI_NEW")
+  // track("CLI_NEW")
 
   const {
     starter,
@@ -552,9 +552,9 @@ export const newStarter = async args => {
 
   if (selectedOtherStarter) {
     reporter.info(
-      `Find the url of the Medusa starter you wish to create and run:
+      `Find the url of the Oryx starter you wish to create and run:
 
-medusa new ${rootPath} [url-to-starter]
+oryx new ${rootPath} [url-to-starter]
 
 `
     )
@@ -565,7 +565,7 @@ medusa new ${rootPath} [url-to-starter]
     const isStarterAUrl =
       starter && !url.parse(starter).hostname && !url.parse(starter).protocol
 
-    if (/medusa-starter/gi.test(rootPath) && isStarterAUrl) {
+    if (/oryx-starter/gi.test(rootPath) && isStarterAUrl) {
       reporter.panic({
         id: `10000`,
         context: {
@@ -619,7 +619,7 @@ medusa new ${rootPath} [url-to-starter]
     isPostgres = databaseType === "postgres"
   }
 
-  track("CLI_NEW_LAYOUT_COMPLETED")
+  // track("CLI_NEW_LAYOUT_COMPLETED")
 
   let creds = dbCredentials
 
@@ -631,26 +631,26 @@ medusa new ${rootPath} [url-to-starter]
     reporter.info("Skipping automatic database setup")
   } else {
     if (!skipDb && isPostgres) {
-      track("CLI_NEW_SETUP_DB")
+      // track("CLI_NEW_SETUP_DB")
       await setupDB(rootPath, creds)
     }
 
     if (!skipEnv) {
-      track("CLI_NEW_SETUP_ENV")
+      // track("CLI_NEW_SETUP_ENV")
       await setupEnvVars(rootPath, rootPath, creds, isPostgres)
     }
 
     if (!skipMigrations && isPostgres) {
-      track("CLI_NEW_RUN_MIGRATIONS")
+      // track("CLI_NEW_RUN_MIGRATIONS")
       await runMigrations(rootPath)
     }
 
     if (seed) {
-      track("CLI_NEW_SEED_DB")
+      // track("CLI_NEW_SEED_DB")
       await attemptSeed(rootPath)
     }
   }
 
   successMessage(rootPath)
-  track("CLI_NEW_SUCCEEDED")
+  // track("CLI_NEW_SUCCEEDED")
 }

@@ -21,7 +21,7 @@ exports.promisifiedSpawn = async ([cmd, args = [], spawnArgs = {}]) => {
       console.log(
         `\nCommand "${cmd} ${args.join(
           ` `
-        )}" failed.\nTo see details of failed command, rerun "medusa-dev" without "--quiet" or "-q" switch\n`
+        )}" failed.\nTo see details of failed command, rerun "oryx-dev" without "--quiet" or "-q" switch\n`
       )
     }
     throw e

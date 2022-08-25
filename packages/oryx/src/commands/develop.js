@@ -18,7 +18,7 @@ export default async function ({ port, directory }) {
     stdio: ["ignore", process.stdout, process.stderr],
   })
 
-  const cliPath = path.join(directory, "node_modules", ".bin", "medusa")
+  const cliPath = path.join(directory, "node_modules", ".bin", "oryx")
   let child = spawn(cliPath, [`start`, ...args], {
     cwd: directory,
     env: process.env,
