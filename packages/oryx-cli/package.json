@@ -12,7 +12,7 @@
     "directory": "packages/oryx-cli"
   },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "test": "jest",
