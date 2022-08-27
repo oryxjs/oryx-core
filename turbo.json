@@ -6,7 +6,8 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "api/**", "services/**", "subscribers/**"]
     },
-    "lint": {
+    "test": {
+      "dependsOn": ["build"],
       "outputs": []
     },
     "dev": {

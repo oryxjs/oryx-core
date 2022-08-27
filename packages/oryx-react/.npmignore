@@ -10,3 +10,5 @@ public/
 mocks/
 stories/
 yarn.lock
+.turbo
+src
