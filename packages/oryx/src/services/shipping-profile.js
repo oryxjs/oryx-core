@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { Any } from "typeorm"
 
 /**

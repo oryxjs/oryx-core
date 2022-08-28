@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager, ILike, SelectQueryBuilder } from "typeorm"
 import { ProductTag } from "../models/product-tag"
 import { ProductTagRepository } from "../repositories/product-tag"
@@ -46,10 +46,7 @@ class ProductTagService extends BaseService {
    * @param {Object} config - the config to retrieve the tag by
    * @return {Promise<ProductTag>} the collection.
    */
-  async retrieve(
-    tagId: string,
-    config: FindConfig<ProductTag> = {}
-  ): Promise<ProductTag> {
+  async retrieve(tagId: string, config: FindConfig<ProductTag> = {}): Promise<ProductTag> {
     const tagRepo = this.manager_.getCustomRepository(this.tagRepo_)
 
     const query = this.buildQuery_({ id: tagId }, config)

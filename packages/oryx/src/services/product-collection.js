@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { Brackets, ILike } from "typeorm"
 import { formatException } from "../utils/exception-formatter"
 

@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager } from "typeorm"
 import { Cart } from "../models/cart"
 import { LineItem } from "../models/line-item"
@@ -42,9 +42,7 @@ class LineItemAdjustmentService extends BaseService {
     this.discountService = discountService
   }
 
-  withTransaction(
-    transactionManager: EntityManager
-  ): LineItemAdjustmentService {
+  withTransaction(transactionManager: EntityManager): LineItemAdjustmentService {
     if (!transactionManager) {
       return this
     }
@@ -70,8 +68,9 @@ class LineItemAdjustmentService extends BaseService {
     id: string,
     config: FindConfig<LineItemAdjustment> = {}
   ): Promise<LineItemAdjustment> {
-    const lineItemAdjustmentRepo: LineItemAdjustmentRepository =
-      this.manager_.getCustomRepository(this.lineItemAdjustmentRepo_)
+    const lineItemAdjustmentRepo: LineItemAdjustmentRepository = this.manager_.getCustomRepository(
+      this.lineItemAdjustmentRepo_
+    )
 
     const query = this.buildQuery_({ id }, config)
     const lineItemAdjustment = await lineItemAdjustmentRepo.findOne(query)
@@ -93,8 +92,9 @@ class LineItemAdjustmentService extends BaseService {
    */
   async create(data: Partial<LineItemAdjustment>): Promise<LineItemAdjustment> {
     return await this.atomicPhase_(async (manager: EntityManager) => {
-      const lineItemAdjustmentRepo: LineItemAdjustmentRepository =
-        manager.getCustomRepository(this.lineItemAdjustmentRepo_)
+      const lineItemAdjustmentRepo: LineItemAdjustmentRepository = manager.getCustomRepository(
+        this.lineItemAdjustmentRepo_
+      )
 
       const lineItemAdjustment = lineItemAdjustmentRepo.create(data)
 
@@ -108,23 +108,18 @@ class LineItemAdjustmentService extends BaseService {
    * @param data - the line item adjustment to create
    * @return line item adjustment
    */
-  async update(
-    id: string,
-    data: Partial<LineItemAdjustment>
-  ): Promise<LineItemAdjustment> {
+  async update(id: string, data: Partial<LineItemAdjustment>): Promise<LineItemAdjustment> {
     return await this.atomicPhase_(async (manager: EntityManager) => {
-      const lineItemAdjustmentRepo: LineItemAdjustmentRepository =
-        manager.getCustomRepository(this.lineItemAdjustmentRepo_)
+      const lineItemAdjustmentRepo: LineItemAdjustmentRepository = manager.getCustomRepository(
+        this.lineItemAdjustmentRepo_
+      )
 
       const lineItemAdjustment = await this.retrieve(id)
 
       const { metadata, ...rest } = data
 
       if (metadata) {
-        lineItemAdjustment.metadata = this.setMetadata_(
-          lineItemAdjustment,
-          metadata
-        )
+        lineItemAdjustment.metadata = this.setMetadata_(lineItemAdjustment, metadata)
       }
 
       for (const [key, value] of Object.entries(rest)) {
@@ -146,9 +141,7 @@ class LineItemAdjustmentService extends BaseService {
     selector: FilterableLineItemAdjustmentProps = {},
     config: FindConfig<LineItemAdjustment> = { skip: 0, take: 20 }
   ): Promise<LineItemAdjustment[]> {
-    const lineItemAdjustmentRepo = this.manager_.getCustomRepository(
-      this.lineItemAdjustmentRepo_
-    )
+    const lineItemAdjustmentRepo = this.manager_.getCustomRepository(this.lineItemAdjustmentRepo_)
 
     const query = this.buildQuery_(selector, config)
     return await lineItemAdjustmentRepo.find(query)
@@ -159,12 +152,11 @@ class LineItemAdjustmentService extends BaseService {
    * @param selectorOrId - the query object for find or the line item adjustment id
    * @return the result of the delete operation
    */
-  async delete(
-    selectorOrId: string | FilterableLineItemAdjustmentProps
-  ): Promise<void> {
+  async delete(selectorOrId: string | FilterableLineItemAdjustmentProps): Promise<void> {
     return this.atomicPhase_(async (manager) => {
-      const lineItemAdjustmentRepo: LineItemAdjustmentRepository =
-        manager.getCustomRepository(this.lineItemAdjustmentRepo_)
+      const lineItemAdjustmentRepo: LineItemAdjustmentRepository = manager.getCustomRepository(
+        this.lineItemAdjustmentRepo_
+      )
 
       if (typeof selectorOrId === "string") {
         return await this.delete({ id: selectorOrId })
@@ -205,9 +197,7 @@ class LineItemAdjustmentService extends BaseService {
         return []
       }
 
-      const [discount] = cart.discounts.filter(
-        (d) => d.rule.type !== "free_shipping"
-      )
+      const [discount] = cart.discounts.filter((d) => d.rule.type !== "free_shipping")
 
       // if no discount is applied to the cart then return
       if (!discount) {
@@ -254,10 +244,7 @@ class LineItemAdjustmentService extends BaseService {
    * @param lineItem - the line item for which a line item adjustment might be created
    * @return a line item adjustment or undefined if no adjustment was created
    */
-  async createAdjustmentForLineItem(
-    cart: Cart,
-    lineItem: LineItem
-  ): Promise<LineItemAdjustment[]> {
+  async createAdjustmentForLineItem(cart: Cart, lineItem: LineItem): Promise<LineItemAdjustment[]> {
     const adjustments = await this.generateAdjustments(cart, lineItem, {
       variant: lineItem.variant,
     })
@@ -294,9 +281,7 @@ class LineItemAdjustmentService extends BaseService {
       return []
     }
 
-    return await Promise.all(
-      cart.items.map((li) => this.createAdjustmentForLineItem(cart, li))
-    )
+    return await Promise.all(cart.items.map((li) => this.createAdjustmentForLineItem(cart, li)))
   }
 }
 

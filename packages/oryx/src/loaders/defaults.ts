@@ -1,4 +1,8 @@
-import { BasePaymentService, BaseNotificationService, BaseFulfillmentService } from 'medusa-interfaces'
+import {
+  BasePaymentService,
+  BaseNotificationService,
+  BaseFulfillmentService,
+} from "oryx-interfaces"
 import { currencies } from "../utils/currencies"
 import { countries } from "../utils/countries"
 import { AwilixContainer } from "awilix"
@@ -16,10 +20,14 @@ import {
 } from "../services"
 import { CurrencyRepository } from "../repositories/currency"
 import { AbstractTaxService } from "../interfaces"
-import { FlagRouter } from "../utils/flag-router";
-import SalesChannelFeatureFlag from "./feature-flags/sales-channels";
+import { FlagRouter } from "../utils/flag-router"
+import SalesChannelFeatureFlag from "./feature-flags/sales-channels"
 
-const silentResolution = <T>(container: AwilixContainer, name: string, logger: Logger): T | never | undefined => {
+const silentResolution = <T>(
+  container: AwilixContainer,
+  name: string,
+  logger: Logger
+): T | never | undefined => {
   try {
     return container.resolve<T>(name)
   } catch (err) {
@@ -44,7 +52,7 @@ const silentResolution = <T>(container: AwilixContainer, name: string, logger: L
         `You don't have any ${identifier} provider plugins installed. You may want to add one to your project.`
       )
     }
-    return;
+    return
   }
 }
 
@@ -72,13 +80,7 @@ export default async ({ container }: { container: AwilixContainer }): Promise<vo
         const name = c.name.toUpperCase()
         const display = c.name
 
-        await manager.queryRunner?.query(query, [
-          iso2,
-          iso3,
-          numeric,
-          name,
-          display,
-        ])
+        await manager.queryRunner?.query(query, [iso2, iso3, numeric, name, display])
       }
     }
   })
@@ -111,18 +113,27 @@ export default async ({ container }: { container: AwilixContainer }): Promise<vo
     await pProviderService.registerInstalledProviders(payIds)
 
     const notiProviders =
-      silentResolution<typeof BaseNotificationService[]>(container, "notificationProviders", logger) || []
+      silentResolution<typeof BaseNotificationService[]>(
+        container,
+        "notificationProviders",
+        logger
+      ) || []
     const notiIds = notiProviders.map((p) => p.getIdentifier())
 
     const nProviderService = container.resolve<NotificationService>("notificationService")
     await nProviderService.registerInstalledProviders(notiIds)
 
-
     const fulfilProviders =
-      silentResolution<typeof BaseFulfillmentService[]>(container, "fulfillmentProviders", logger) || []
+      silentResolution<typeof BaseFulfillmentService[]>(
+        container,
+        "fulfillmentProviders",
+        logger
+      ) || []
     const fulfilIds = fulfilProviders.map((p) => p.getIdentifier())
 
-    const fProviderService = container.resolve<FulfillmentProviderService>("fulfillmentProviderService")
+    const fProviderService = container.resolve<FulfillmentProviderService>(
+      "fulfillmentProviderService"
+    )
     await fProviderService.registerInstalledProviders(fulfilIds)
 
     const taxProviders =

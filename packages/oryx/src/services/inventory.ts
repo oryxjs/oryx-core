@@ -1,4 +1,4 @@
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { MedusaError } from "medusa-core-utils"
 import { TransactionBaseService } from "../interfaces"
 import { EntityManager } from "typeorm"
@@ -37,16 +37,12 @@ class InventoryService extends TransactionBaseService<InventoryService> {
     }
 
     return await this.atomicPhase_(async (manager) => {
-      const variant = await this.productVariantService_
-        .withTransaction(manager)
-        .retrieve(variantId)
+      const variant = await this.productVariantService_.withTransaction(manager).retrieve(variantId)
       // if inventory is managed then update
       if (variant.manage_inventory) {
-        return await this.productVariantService_
-          .withTransaction(manager)
-          .update(variant, {
-            inventory_quantity: variant.inventory_quantity + adjustment,
-          })
+        return await this.productVariantService_.withTransaction(manager).update(variant, {
+          inventory_quantity: variant.inventory_quantity + adjustment,
+        })
       } else {
         return variant
       }
@@ -60,10 +56,7 @@ class InventoryService extends TransactionBaseService<InventoryService> {
    * @param quantity - the number of units to check availability for
    * @return true if the inventory covers the quantity
    */
-  async confirmInventory(
-    variantId: string | undefined | null,
-    quantity: number
-  ): Promise<boolean> {
+  async confirmInventory(variantId: string | undefined | null, quantity: number): Promise<boolean> {
     // if variantId is undefined then confirm inventory as it
     // is a custom item that is not managed
     if (typeof variantId === "undefined" || variantId === null) {
@@ -71,12 +64,9 @@ class InventoryService extends TransactionBaseService<InventoryService> {
     }
 
     return await this.atomicPhase_(async (manager) => {
-      const variant = await this.productVariantService_
-        .withTransaction(manager)
-        .retrieve(variantId)
+      const variant = await this.productVariantService_.withTransaction(manager).retrieve(variantId)
       const { inventory_quantity, allow_backorder, manage_inventory } = variant
-      const isCovered =
-        !manage_inventory || allow_backorder || inventory_quantity >= quantity
+      const isCovered = !manage_inventory || allow_backorder || inventory_quantity >= quantity
 
       if (!isCovered) {
         throw new MedusaError(

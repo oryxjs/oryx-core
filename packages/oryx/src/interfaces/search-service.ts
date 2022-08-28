@@ -1,5 +1,5 @@
 import { TransactionBaseService } from "./transaction-base-service"
-import { SearchService } from "medusa-interfaces"
+import { SearchService } from "oryx-interfaces"
 
 export interface ISearchService<T extends TransactionBaseService<never>> {
   options: Record<string, unknown>
@@ -72,12 +72,9 @@ export interface ISearchService<T extends TransactionBaseService<never>> {
   updateSettings(indexName: string, settings: unknown): unknown
 }
 
-export abstract class AbstractSearchService<
-    T extends TransactionBaseService<never>
-  >
+export abstract class AbstractSearchService<T extends TransactionBaseService<never>>
   extends TransactionBaseService<T>
-  implements ISearchService<T>
-{
+  implements ISearchService<T> {
   abstract readonly isDefault
   protected readonly options_: Record<string, unknown>
 
@@ -94,30 +91,15 @@ export abstract class AbstractSearchService<
 
   abstract getIndex(indexName: string): unknown
 
-  abstract addDocuments(
-    indexName: string,
-    documents: unknown,
-    type: string
-  ): unknown
+  abstract addDocuments(indexName: string, documents: unknown, type: string): unknown
 
-  abstract replaceDocuments(
-    indexName: string,
-    documents: unknown,
-    type: string
-  ): unknown
+  abstract replaceDocuments(indexName: string, documents: unknown, type: string): unknown
 
-  abstract deleteDocument(
-    indexName: string,
-    document_id: string | number
-  ): unknown
+  abstract deleteDocument(indexName: string, document_id: string | number): unknown
 
   abstract deleteAllDocuments(indexName: string): unknown
 
-  abstract search(
-    indexName: string,
-    query: string | null,
-    options: unknown
-  ): unknown
+  abstract search(indexName: string, query: string | null, options: unknown): unknown
 
   abstract updateSettings(indexName: string, settings: unknown): unknown
 }

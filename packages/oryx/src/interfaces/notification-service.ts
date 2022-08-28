@@ -1,5 +1,5 @@
 import { TransactionBaseService } from "./transaction-base-service"
-import BaseNotificationService from "medusa-interfaces/dist/notification-service"
+import BaseNotificationService from "oryx-interfaces/dist/notification-service"
 
 type ReturnedData = {
   to: string
@@ -22,12 +22,9 @@ export interface INotificationService<T extends TransactionBaseService<never>>
   ): Promise<ReturnedData>
 }
 
-export abstract class AbstractNotificationService<
-    T extends TransactionBaseService<never>
-  >
+export abstract class AbstractNotificationService<T extends TransactionBaseService<never>>
   extends TransactionBaseService<T>
-  implements INotificationService<T>
-{
+  implements INotificationService<T> {
   static identifier: string
 
   getIdentifier(): string {
@@ -48,8 +45,5 @@ export abstract class AbstractNotificationService<
 }
 
 export const isNotificationService = (obj: unknown): boolean => {
-  return (
-    obj instanceof AbstractNotificationService ||
-    obj instanceof BaseNotificationService
-  )
+  return obj instanceof AbstractNotificationService || obj instanceof BaseNotificationService
 }

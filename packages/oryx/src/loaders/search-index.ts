@@ -10,19 +10,12 @@ function loadProductsIntoSearchEngine(container: MedusaContainer): void {
   const eventBusService: EventBusService = container.resolve("eventBusService")
   eventBusService.emit(SEARCH_INDEX_EVENT, {}).catch((err) => {
     logger.error(err)
-    logger.error(
-      "Something went wrong while emitting the search indexing event."
-    )
+    logger.error("Something went wrong while emitting the search indexing event.")
   })
 }
 
-export default async ({
-  container,
-}: {
-  container: MedusaContainer
-}): Promise<void> => {
-  const searchService =
-    container.resolve<AbstractSearchService<never>>("searchService")
+export default async ({ container }: { container: MedusaContainer }): Promise<void> => {
+  const searchService = container.resolve<AbstractSearchService<never>>("searchService")
   const logger = container.resolve<Logger>("logger")
   if (searchService.isDefault) {
     logger.warn(

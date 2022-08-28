@@ -1,4 +1,4 @@
-import paymentService from "medusa-interfaces/dist/payment-service"
+import paymentService from "oryx-interfaces/dist/payment-service"
 import { IdMap, MockRepository, MockManager } from "medusa-test-utils"
 import SwapService from "../swap"
 import { InventoryServiceMock } from "../__mocks__/inventory"

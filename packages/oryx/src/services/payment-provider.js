@@ -1,4 +1,4 @@
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { MedusaError } from "medusa-core-utils"
 
 /**

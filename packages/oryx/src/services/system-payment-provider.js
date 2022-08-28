@@ -1,4 +1,4 @@
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 
 class SystemProviderService extends BaseService {
   static identifier = "system"

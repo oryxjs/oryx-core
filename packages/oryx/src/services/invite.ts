@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken"
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager } from "typeorm"
 import { EventBusService, UserService } from "."
 import { User } from ".."
@@ -35,13 +35,7 @@ class InviteService extends BaseService {
   protected readonly configModule_: ConfigModule
 
   constructor(
-    {
-      manager,
-      userService,
-      userRepository,
-      inviteRepository,
-      eventBusService,
-    }: InviteServiceProps,
+    { manager, userService, userRepository, inviteRepository, eventBusService }: InviteServiceProps,
     configModule: ConfigModule
   ) {
     super()
@@ -90,10 +84,7 @@ class InviteService extends BaseService {
     if (jwt_secret) {
       return jwt.sign(data, jwt_secret)
     }
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
-      "Please configure jwt_secret"
-    )
+    throw new MedusaError(MedusaError.Types.INVALID_DATA, "Please configure jwt_secret")
   }
 
   async list(selector, config = {}): Promise<ListInvite[]> {
@@ -117,8 +108,7 @@ class InviteService extends BaseService {
     validDuration = DEFAULT_VALID_DURATION
   ): Promise<void> {
     return await this.atomicPhase_(async (manager) => {
-      const inviteRepository =
-        this.manager_.getCustomRepository(InviteRepository)
+      const inviteRepository = this.manager_.getCustomRepository(InviteRepository)
 
       const userRepo = this.manager_.getCustomRepository(UserRepository)
 
@@ -160,19 +150,15 @@ class InviteService extends BaseService {
       })
 
       invite.expires_at = new Date()
-      invite.expires_at.setMilliseconds(
-        invite.expires_at.getMilliseconds() + validDuration
-      )
+      invite.expires_at.setMilliseconds(invite.expires_at.getMilliseconds() + validDuration)
 
       invite = await inviteRepository.save(invite)
 
-      await this.eventBus_
-        .withTransaction(manager)
-        .emit(InviteService.Events.CREATED, {
-          id: invite.id,
-          token: invite.token,
-          user_email: invite.user_email,
-        })
+      await this.eventBus_.withTransaction(manager).emit(InviteService.Events.CREATED, {
+        id: invite.id,
+        token: invite.token,
+        user_email: invite.user_email,
+      })
     })
   }
 
@@ -184,8 +170,7 @@ class InviteService extends BaseService {
    */
   async delete(inviteId): Promise<void> {
     return this.atomicPhase_(async (manager) => {
-      const inviteRepo: InviteRepository =
-        manager.getCustomRepository(InviteRepository)
+      const inviteRepo: InviteRepository = manager.getCustomRepository(InviteRepository)
 
       // Should not fail, if invite does not exist, since delete is idempotent
       const invite = await inviteRepo.findOne({ where: { id: inviteId } })
@@ -205,27 +190,18 @@ class InviteService extends BaseService {
     try {
       decoded = this.verifyToken(token)
     } catch (err) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
-        "Token is not valid"
-      )
+      throw new MedusaError(MedusaError.Types.INVALID_DATA, "Token is not valid")
     }
 
     const { invite_id, user_email } = decoded
 
     return this.atomicPhase_(async (m) => {
       const userRepo = m.getCustomRepository(this.userRepo_)
-      const inviteRepo: InviteRepository = m.getCustomRepository(
-        this.inviteRepository_
-      )
+      const inviteRepo: InviteRepository = m.getCustomRepository(this.inviteRepository_)
 
       const invite = await inviteRepo.findOne({ where: { id: invite_id } })
 
-      if (
-        !invite ||
-        invite?.user_email !== user_email ||
-        new Date() > invite.expires_at
-      ) {
+      if (!invite || invite?.user_email !== user_email || new Date() > invite.expires_at) {
         throw new MedusaError(MedusaError.Types.INVALID_DATA, `Invalid invite`)
       }
 
@@ -235,10 +211,7 @@ class InviteService extends BaseService {
       })
 
       if (exists) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
-          "User already joined"
-        )
+        throw new MedusaError(MedusaError.Types.INVALID_DATA, "User already joined")
       }
 
       // use the email of the user who actually accepted the invite
@@ -263,10 +236,7 @@ class InviteService extends BaseService {
     if (jwt_secret) {
       return jwt.verify(token, jwt_secret)
     }
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
-      "Please configure jwt_secret"
-    )
+    throw new MedusaError(MedusaError.Types.INVALID_DATA, "Please configure jwt_secret")
   }
 
   async resend(id): Promise<void> {
@@ -275,10 +245,7 @@ class InviteService extends BaseService {
     const invite = await inviteRepo.findOne({ id })
 
     if (!invite) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
-        `Invite doesn't exist`
-      )
+      throw new MedusaError(MedusaError.Types.INVALID_DATA, `Invite doesn't exist`)
     }
 
     invite.token = this.generateToken({
@@ -292,13 +259,11 @@ class InviteService extends BaseService {
 
     await inviteRepo.save(invite)
 
-    await this.eventBus_
-      .withTransaction(this.manager_)
-      .emit(InviteService.Events.CREATED, {
-        id: invite.id,
-        token: invite.token,
-        user_email: invite.user_email,
-      })
+    await this.eventBus_.withTransaction(this.manager_).emit(InviteService.Events.CREATED, {
+      id: invite.id,
+      token: invite.token,
+      user_email: invite.user_email,
+    })
   }
 }
 

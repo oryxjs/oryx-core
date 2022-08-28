@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { Brackets, EntityManager, ILike, SelectQueryBuilder } from "typeorm"
 import {
   IPriceSelectionStrategy,
@@ -13,10 +13,7 @@ import { CartRepository } from "../repositories/cart"
 import { MoneyAmountRepository } from "../repositories/money-amount"
 import { ProductRepository } from "../repositories/product"
 import { ProductOptionValueRepository } from "../repositories/product-option-value"
-import {
-  FindWithRelationsOptions,
-  ProductVariantRepository,
-} from "../repositories/product-variant"
+import { FindWithRelationsOptions, ProductVariantRepository } from "../repositories/product-variant"
 import EventBusService from "./event-bus"
 import RegionService from "./region"
 import { FindConfig } from "../types/common"
@@ -120,9 +117,7 @@ class ProductVariantService extends BaseService {
       include_discount_prices: false,
     }
   ): Promise<ProductVariant> {
-    const variantRepo = this.manager_.getCustomRepository(
-      this.productVariantRepository_
-    )
+    const variantRepo = this.manager_.getCustomRepository(this.productVariantRepository_)
     const validatedId = this.validateId_(variantId)
 
     const query = this.buildQuery_({ id: validatedId }, config)
@@ -150,9 +145,7 @@ class ProductVariantService extends BaseService {
       include_discount_prices: false,
     }
   ): Promise<ProductVariant> {
-    const variantRepo = this.manager_.getCustomRepository(
-      this.productVariantRepository_
-    )
+    const variantRepo = this.manager_.getCustomRepository(this.productVariantRepository_)
 
     const priceIndex = config.relations?.indexOf("prices") ?? -1
     if (priceIndex >= 0 && config.relations) {
@@ -164,10 +157,7 @@ class ProductVariantService extends BaseService {
     const variant = await variantRepo.findOne(query)
 
     if (!variant) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
-        `Variant with sku: ${sku} was not found`
-      )
+      throw new MedusaError(MedusaError.Types.NOT_FOUND, `Variant with sku: ${sku} was not found`)
     }
 
     return variant
@@ -186,9 +176,7 @@ class ProductVariantService extends BaseService {
   ): Promise<ProductVariant> {
     return this.atomicPhase_(async (manager: EntityManager) => {
       const productRepo = manager.getCustomRepository(this.productRepository_)
-      const variantRepo = manager.getCustomRepository(
-        this.productVariantRepository_
-      )
+      const variantRepo = manager.getCustomRepository(this.productVariantRepository_)
 
       const { prices, ...rest } = variant
 
@@ -200,10 +188,7 @@ class ProductVariantService extends BaseService {
           relations: ["variants", "variants.options", "options"],
         })) as Product
       } else if (!product.id) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
-          `Product id missing`
-        )
+        throw new MedusaError(MedusaError.Types.INVALID_DATA, `Product id missing`)
       }
 
       if (product.options.length !== variant.options.length) {
@@ -224,9 +209,7 @@ class ProductVariantService extends BaseService {
 
       const variantExists = product.variants.find((v) => {
         return v.options.every((option) => {
-          const variantOption = variant.options.find(
-            (o) => option.option_id === o.option_id
-          )
+          const variantOption = variant.options.find((o) => option.option_id === o.option_id)
 
           return option.value === variantOption?.value
         })
@@ -265,12 +248,10 @@ class ProductVariantService extends BaseService {
         }
       }
 
-      await this.eventBus_
-        .withTransaction(manager)
-        .emit(ProductVariantService.Events.CREATED, {
-          id: result.id,
-          product_id: result.product_id,
-        })
+      await this.eventBus_.withTransaction(manager).emit(ProductVariantService.Events.CREATED, {
+        id: result.id,
+        product_id: result.product_id,
+      })
 
       return result
     })
@@ -290,9 +271,7 @@ class ProductVariantService extends BaseService {
     update: UpdateProductVariantInput
   ): Promise<ProductVariant> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const variantRepo = manager.getCustomRepository(
-        this.productVariantRepository_
-      )
+      const variantRepo = manager.getCustomRepository(this.productVariantRepository_)
 
       let variant = variantOrVariantId as ProductVariant
       if (typeof variant === `string`) {
@@ -308,10 +287,7 @@ class ProductVariantService extends BaseService {
           variant = variantRes as ProductVariant
         }
       } else if (!variant.id) {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
-          `Variant id missing`
-        )
+        throw new MedusaError(MedusaError.Types.INVALID_DATA, `Variant id missing`)
       }
 
       const { prices, options, metadata, inventory_quantity, ...rest } = update
@@ -322,11 +298,7 @@ class ProductVariantService extends BaseService {
 
       if (options) {
         for (const option of options) {
-          await this.updateOptionValue(
-            variant.id,
-            option.option_id,
-            option.value
-          )
+          await this.updateOptionValue(variant.id, option.option_id, option.value)
         }
       }
 
@@ -344,13 +316,11 @@ class ProductVariantService extends BaseService {
 
       const result = await variantRepo.save(variant)
 
-      await this.eventBus_
-        .withTransaction(manager)
-        .emit(ProductVariantService.Events.UPDATED, {
-          id: result.id,
-          product_id: result.product_id,
-          fields: Object.keys(update),
-        })
+      await this.eventBus_.withTransaction(manager).emit(ProductVariantService.Events.UPDATED, {
+        id: result.id,
+        product_id: result.product_id,
+        fields: Object.keys(update),
+      })
 
       return result
     })
@@ -363,20 +333,12 @@ class ProductVariantService extends BaseService {
    * @param prices - the update prices
    * @returns {Promise<void>} empty promise
    */
-  async updateVariantPrices(
-    variantId: string,
-    prices: ProductVariantPrice[]
-  ): Promise<void> {
+  async updateVariantPrices(variantId: string, prices: ProductVariantPrice[]): Promise<void> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const moneyAmountRepo = manager.getCustomRepository(
-        this.moneyAmountRepository_
-      )
+      const moneyAmountRepo = manager.getCustomRepository(this.moneyAmountRepository_)
 
       // get prices to be deleted
-      const obsoletePrices = await moneyAmountRepo.findVariantPricesNotIn(
-        variantId,
-        prices
-      )
+      const obsoletePrices = await moneyAmountRepo.findVariantPricesNotIn(variantId, prices)
 
       for (const price of prices) {
         if (price.region_id) {
@@ -401,14 +363,9 @@ class ProductVariantService extends BaseService {
    * @param {GetRegionPriceContext} context - context for getting region price
    * @return {number} the price specific to the region
    */
-  async getRegionPrice(
-    variantId: string,
-    context: GetRegionPriceContext
-  ): Promise<number> {
+  async getRegionPrice(variantId: string, context: GetRegionPriceContext): Promise<number> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const region = await this.regionService_
-        .withTransaction(manager)
-        .retrieve(context.regionId)
+      const region = await this.regionService_.withTransaction(manager).retrieve(context.regionId)
 
       const prices = await this.priceSelectionStrategy_
         .withTransaction(manager)
@@ -430,14 +387,9 @@ class ProductVariantService extends BaseService {
    * @param {string} price - the price for the variant.
    * @return {Promise} the result of the update operation
    */
-  async setRegionPrice(
-    variantId: string,
-    price: ProductVariantPrice
-  ): Promise<MoneyAmount> {
+  async setRegionPrice(variantId: string, price: ProductVariantPrice): Promise<MoneyAmount> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const moneyAmountRepo = manager.getCustomRepository(
-        this.moneyAmountRepository_
-      )
+      const moneyAmountRepo = manager.getCustomRepository(this.moneyAmountRepository_)
 
       let moneyAmount = await moneyAmountRepo.findOne({
         where: {
@@ -467,14 +419,9 @@ class ProductVariantService extends BaseService {
    * @param {ProductVariantPrice} price - the price for the variant
    * @return {Promise} the result of the update operation
    */
-  async setCurrencyPrice(
-    variantId: string,
-    price: ProductVariantPrice
-  ): Promise<MoneyAmount> {
+  async setCurrencyPrice(variantId: string, price: ProductVariantPrice): Promise<MoneyAmount> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const moneyAmountRepo = manager.getCustomRepository(
-        this.moneyAmountRepository_
-      )
+      const moneyAmountRepo = manager.getCustomRepository(this.moneyAmountRepository_)
 
       return await moneyAmountRepo.upsertVariantCurrencyPrice(variantId, price)
     })
@@ -494,19 +441,14 @@ class ProductVariantService extends BaseService {
     optionValue: string
   ): Promise<ProductOptionValue> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const productOptionValueRepo = manager.getCustomRepository(
-        this.productOptionValueRepository_
-      )
+      const productOptionValueRepo = manager.getCustomRepository(this.productOptionValueRepository_)
 
       const productOptionValue = await productOptionValueRepo.findOne({
         where: { variant_id: variantId, option_id: optionId },
       })
 
       if (!productOptionValue) {
-        throw new MedusaError(
-          MedusaError.Types.NOT_FOUND,
-          `Product option value not found`
-        )
+        throw new MedusaError(MedusaError.Types.NOT_FOUND, `Product option value not found`)
       }
 
       productOptionValue.value = optionValue
@@ -532,9 +474,7 @@ class ProductVariantService extends BaseService {
     optionValue: string
   ): Promise<ProductOptionValue> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const productOptionValueRepo = manager.getCustomRepository(
-        this.productOptionValueRepository_
-      )
+      const productOptionValueRepo = manager.getCustomRepository(this.productOptionValueRepository_)
 
       const productOptionValue = productOptionValueRepo.create({
         variant_id: variantId,
@@ -555,8 +495,9 @@ class ProductVariantService extends BaseService {
    */
   async deleteOptionValue(variantId: string, optionId: string): Promise<void> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const productOptionValueRepo: ProductOptionValueRepository =
-        manager.getCustomRepository(this.productOptionValueRepository_)
+      const productOptionValueRepo: ProductOptionValueRepository = manager.getCustomRepository(
+        this.productOptionValueRepository_
+      )
 
       const productOptionValue = await productOptionValueRepo.findOne({
         where: {
@@ -589,9 +530,7 @@ class ProductVariantService extends BaseService {
       include_discount_prices: false,
     }
   ): Promise<[ProductVariant[], number]> {
-    const variantRepo = this.manager_.getCustomRepository(
-      this.productVariantRepository_
-    )
+    const variantRepo = this.manager_.getCustomRepository(this.productVariantRepository_)
 
     const { q, query, relations } = this.prepareListQuery_(selector, config)
 
@@ -608,10 +547,7 @@ class ProductVariantService extends BaseService {
       return [variants, count]
     }
 
-    const [variants, count] = await variantRepo.findWithRelationsAndCount(
-      relations,
-      query
-    )
+    const [variants, count] = await variantRepo.findWithRelationsAndCount(relations, query)
 
     return [variants, count]
   }
@@ -629,9 +565,7 @@ class ProductVariantService extends BaseService {
       take: 20,
     }
   ): Promise<ProductVariant[]> {
-    const productVariantRepo = this.manager_.getCustomRepository(
-      this.productVariantRepository_
-    )
+    const productVariantRepo = this.manager_.getCustomRepository(this.productVariantRepository_)
 
     const priceIndex = config.relations?.indexOf("prices") ?? -1
     if (priceIndex >= 0 && config.relations) {
@@ -681,9 +615,7 @@ class ProductVariantService extends BaseService {
    */
   async delete(variantId: string): Promise<void> {
     return this.atomicPhase_(async (manager: EntityManager) => {
-      const variantRepo = manager.getCustomRepository(
-        this.productVariantRepository_
-      )
+      const variantRepo = manager.getCustomRepository(this.productVariantRepository_)
 
       const variant = await variantRepo.findOne({
         where: { id: variantId },
@@ -696,13 +628,11 @@ class ProductVariantService extends BaseService {
 
       await variantRepo.softRemove(variant)
 
-      await this.eventBus_
-        .withTransaction(manager)
-        .emit(ProductVariantService.Events.DELETED, {
-          id: variant.id,
-          product_id: variant.product_id,
-          metadata: variant.metadata,
-        })
+      await this.eventBus_.withTransaction(manager).emit(ProductVariantService.Events.DELETED, {
+        id: variant.id,
+        product_id: variant.product_id,
+        metadata: variant.metadata,
+      })
 
       return Promise.resolve()
     })
@@ -714,10 +644,7 @@ class ProductVariantService extends BaseService {
    * @param {Object} metadata - the metadata to set
    * @return {Object} updated metadata object
    */
-  setMetadata_(
-    variant: ProductVariant,
-    metadata: object
-  ): Record<string, unknown> {
+  setMetadata_(variant: ProductVariant, metadata: object): Record<string, unknown> {
     const existing = variant.metadata || {}
     const newData = {}
     for (const [key, value] of Object.entries(metadata)) {

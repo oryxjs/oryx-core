@@ -1,1 +1,1 @@
-declare module "medusa-interfaces"
+declare module "oryx-interfaces"

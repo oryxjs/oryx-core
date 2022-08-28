@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager } from "typeorm"
 import { ProductTaxRate } from "../models/product-tax-rate"
 import { ProductTypeTaxRate } from "../models/product-type-tax-rate"
@@ -63,9 +63,7 @@ class TaxRateService extends BaseService {
     selector: FilterableTaxRateProps,
     config: FindConfig<TaxRate> = {}
   ): Promise<TaxRate[]> {
-    const taxRateRepo = this.manager_.getCustomRepository(
-      this.taxRateRepository_
-    )
+    const taxRateRepo = this.manager_.getCustomRepository(this.taxRateRepository_)
     const query = this.buildQuery_(selector, config)
     return await taxRateRepo.findWithResolution(query)
   }
@@ -74,27 +72,19 @@ class TaxRateService extends BaseService {
     selector: FilterableTaxRateProps,
     config: FindConfig<TaxRate> = {}
   ): Promise<[TaxRate[], number]> {
-    const taxRateRepo = this.manager_.getCustomRepository(
-      this.taxRateRepository_
-    )
+    const taxRateRepo = this.manager_.getCustomRepository(this.taxRateRepository_)
     const query = this.buildQuery_(selector, config)
     return await taxRateRepo.findAndCountWithResolution(query)
   }
 
-  async retrieve(
-    id: string,
-    config: FindConfig<TaxRate> = {}
-  ): Promise<TaxRate> {
+  async retrieve(id: string, config: FindConfig<TaxRate> = {}): Promise<TaxRate> {
     const manager = this.manager_
     const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)
     const query = this.buildQuery_({ id }, config)
 
     const taxRate = await taxRateRepo.findOneWithResolution(query)
     if (!taxRate) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
-        `TaxRate with ${id} was not found`
-      )
+      throw new MedusaError(MedusaError.Types.NOT_FOUND, `TaxRate with ${id} was not found`)
     }
 
     return taxRate
@@ -105,10 +95,7 @@ class TaxRateService extends BaseService {
       const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)
 
       if (typeof data.region_id === "undefined") {
-        throw new MedusaError(
-          MedusaError.Types.INVALID_DATA,
-          "TaxRates must belong to a Region"
-        )
+        throw new MedusaError(MedusaError.Types.INVALID_DATA, "TaxRates must belong to a Region")
       }
 
       const taxRate = taxRateRepo.create(data)
@@ -139,10 +126,7 @@ class TaxRateService extends BaseService {
     })
   }
 
-  async removeFromProduct(
-    id: string,
-    productIds: string | string[]
-  ): Promise<void> {
+  async removeFromProduct(id: string, productIds: string | string[]): Promise<void> {
     return await this.atomicPhase_(async (manager: EntityManager) => {
       const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)
 
@@ -157,10 +141,7 @@ class TaxRateService extends BaseService {
     })
   }
 
-  async removeFromProductType(
-    id: string,
-    typeIds: string | string[]
-  ): Promise<void> {
+  async removeFromProductType(id: string, typeIds: string | string[]): Promise<void> {
     return await this.atomicPhase_(async (manager: EntityManager) => {
       const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)
 
@@ -175,10 +156,7 @@ class TaxRateService extends BaseService {
     })
   }
 
-  async removeFromShippingOption(
-    id: string,
-    optionIds: string | string[]
-  ): Promise<void> {
+  async removeFromShippingOption(id: string, optionIds: string | string[]): Promise<void> {
     return await this.atomicPhase_(async (manager: EntityManager) => {
       const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)
 
@@ -219,9 +197,7 @@ class TaxRateService extends BaseService {
           // something is not found.
           await Promise.all([
             this.retrieve(id, { select: ["id"] }),
-            ...ids.map((pId) =>
-              this.productService_.retrieve(pId, { select: ["id"] })
-            ),
+            ...ids.map((pId) => this.productService_.retrieve(pId, { select: ["id"] })),
           ])
         }
       }
@@ -308,19 +284,14 @@ class TaxRateService extends BaseService {
           // something is not found.
           await Promise.all([
             this.retrieve(id, { select: ["id"] }),
-            ...ids.map((sId) =>
-              this.shippingOptionService_.retrieve(sId, { select: ["id"] })
-            ),
+            ...ids.map((sId) => this.shippingOptionService_.retrieve(sId, { select: ["id"] })),
           ])
         }
       }
     )
   }
 
-  async listByProduct(
-    productId: string,
-    config: TaxRateListByConfig
-  ): Promise<TaxRate[]> {
+  async listByProduct(productId: string, config: TaxRateListByConfig): Promise<TaxRate[]> {
     // Check both ProductTaxRate + ProductTypeTaxRate
     const manager = this.manager_
     const taxRateRepo = manager.getCustomRepository(this.taxRateRepository_)

@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager, ILike, SelectQueryBuilder } from "typeorm"
 import { ProductType } from "../models/product-type"
 import { ProductTypeRepository } from "../repositories/product-type"
@@ -44,20 +44,14 @@ class ProductTypeService extends BaseService {
    *   query response
    * @return {Promise<Product>} the result of the find one operation.
    */
-  async retrieve(
-    id: string,
-    config: FindConfig<ProductType> = {}
-  ): Promise<ProductType> {
+  async retrieve(id: string, config: FindConfig<ProductType> = {}): Promise<ProductType> {
     const typeRepo = this.manager_.getCustomRepository(this.typeRepository_)
 
     const query = this.buildQuery_({ id }, config)
     const type = await typeRepo.findOne(query)
 
     if (!type) {
-      throw new MedusaError(
-        MedusaError.Types.NOT_FOUND,
-        `Product with id: ${id} was not found`
-      )
+      throw new MedusaError(MedusaError.Types.NOT_FOUND, `Product with id: ${id} was not found`)
     }
 
     return type

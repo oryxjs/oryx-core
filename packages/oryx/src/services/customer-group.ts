@@ -1,14 +1,11 @@
 import { MedusaError } from "medusa-core-utils"
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { DeepPartial, EntityManager, ILike, SelectQueryBuilder } from "typeorm"
 import { CustomerService } from "."
 import { CustomerGroup } from ".."
 import { CustomerGroupRepository } from "../repositories/customer-group"
 import { FindConfig } from "../types/common"
-import {
-  CustomerGroupUpdate,
-  FilterableCustomerGroupProps,
-} from "../types/customer-groups"
+import { CustomerGroupUpdate, FilterableCustomerGroupProps } from "../types/customer-groups"
 import { formatException } from "../utils/exception-formatter"
 
 type CustomerGroupConstructorProps = {
@@ -60,9 +57,7 @@ class CustomerGroupService extends BaseService {
   }
 
   async retrieve(id: string, config = {}): Promise<CustomerGroup> {
-    const cgRepo = this.manager_.getCustomRepository(
-      this.customerGroupRepository_
-    )
+    const cgRepo = this.manager_.getCustomRepository(this.customerGroupRepository_)
 
     const validatedId = this.validateId_(id)
     const query = this.buildQuery_({ id: validatedId }, config)
@@ -110,10 +105,7 @@ class CustomerGroupService extends BaseService {
    * @param {string[]} customerIds customer id's to add to the group
    * @return {Promise<CustomerGroup>} the customer group after insertion
    */
-  async addCustomers(
-    id: string,
-    customerIds: string | string[]
-  ): Promise<CustomerGroup> {
+  async addCustomers(id: string, customerIds: string | string[]): Promise<CustomerGroup> {
     let ids: string[]
     if (typeof customerIds === "string") {
       ids = [customerIds]
@@ -159,10 +151,7 @@ class CustomerGroupService extends BaseService {
    * @param {CustomerGroupUpdate} update - customer group partial data
    * @returns resulting customer group
    */
-  async update(
-    customerGroupId: string,
-    update: CustomerGroupUpdate
-  ): Promise<CustomerGroup[]> {
+  async update(customerGroupId: string, update: CustomerGroupUpdate): Promise<CustomerGroup[]> {
     return this.atomicPhase_(async (manager) => {
       const { metadata, ...properties } = update
 
@@ -268,10 +257,7 @@ class CustomerGroupService extends BaseService {
    * @param {string[] | string} customerIds id's of the customer to remove from group
    * @return {Promise<CustomerGroup>} the customergroup with the provided id
    */
-  async removeCustomer(
-    id: string,
-    customerIds: string[] | string
-  ): Promise<CustomerGroup> {
+  async removeCustomer(id: string, customerIds: string[] | string): Promise<CustomerGroup> {
     const cgRepo: CustomerGroupRepository = this.manager_.getCustomRepository(
       this.customerGroupRepository_
     )

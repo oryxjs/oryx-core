@@ -1,4 +1,4 @@
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 import { EntityManager } from "typeorm"
 import { ShippingTaxRate } from "../models/shipping-tax-rate"
 import { ShippingTaxRateRepository } from "../repositories/shipping-tax-rate"
@@ -48,9 +48,7 @@ class ShippingTaxRateService extends BaseService {
     selector: FilterableShippingTaxRateProps,
     config: FindConfig<ShippingTaxRate> = { relations: [], skip: 0, take: 20 }
   ): Promise<ShippingTaxRate[]> {
-    const sTaxRateRepo = this.manager_.getCustomRepository(
-      this.shippingTaxRateRepository_
-    )
+    const sTaxRateRepo = this.manager_.getCustomRepository(this.shippingTaxRateRepository_)
 
     const query = this.buildQuery_(selector, config)
 

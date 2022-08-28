@@ -1,4 +1,4 @@
-import { BaseService } from "medusa-interfaces"
+import { BaseService } from "oryx-interfaces"
 
 import { LineItem } from "../models/line-item"
 import { Region } from "../models/region"
@@ -60,10 +60,7 @@ export interface ITaxService {
   ): Promise<ProviderTaxLine[]>
 }
 
-export abstract class AbstractTaxService
-  extends BaseService
-  implements ITaxService
-{
+export abstract class AbstractTaxService extends BaseService implements ITaxService {
   protected static identifier: string
 
   public getIdentifier(): string {

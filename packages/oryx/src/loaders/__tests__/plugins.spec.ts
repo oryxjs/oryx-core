@@ -15,16 +15,13 @@ import { MedusaContainer } from "../../types/global"
 // ***** TEMPLATES *****
 const buildServiceTemplate = (name: string): string => {
   return `
-    import { BaseService } from "medusa-interfaces"
+    import { BaseService } from "oryx-interfaces"
     export default class ${name}Service extends BaseService {}
   `
 }
 const buildTransactionBaseServiceServiceTemplate = (name: string) => {
   return `
-    import { TransactionBaseService } from "${resolve(
-      __dirname,
-      "../../interfaces"
-    )}"
+    import { TransactionBaseService } from "${resolve(__dirname, "../../interfaces")}"
     export default class ${name}Service extends TransactionBaseService {}
   `
 }
@@ -111,7 +108,7 @@ function asArray(
 
 describe("plugins loader", () => {
   const container = createContainer() as MedusaContainer
-  container.registerAdd = function (
+  container.registerAdd = function(
     this: MedusaContainer,
     name: string,
     registration: typeof asFunction | typeof asValue
@@ -149,38 +146,26 @@ describe("plugins loader", () => {
     jest.clearAllMocks()
   })
 
-  describe("registerStrategies", function () {
+  describe("registerStrategies", function() {
     beforeAll(async () => {
       mkdirSync(getFolderTestTargetDirectoryPath("strategies"), {
         mode: "777",
         recursive: true,
       })
       writeFileSync(
-        resolve(
-          getFolderTestTargetDirectoryPath("strategies"),
-          "test-batch-1.js"
-        ),
+        resolve(getFolderTestTargetDirectoryPath("strategies"), "test-batch-1.js"),
         buildBatchJobStrategyTemplate("testBatch1", "type-1")
       )
       writeFileSync(
-        resolve(
-          getFolderTestTargetDirectoryPath("strategies"),
-          "test-price-selection.js"
-        ),
+        resolve(getFolderTestTargetDirectoryPath("strategies"), "test-price-selection.js"),
         buildPriceSelectionStrategyTemplate("test")
       )
       writeFileSync(
-        resolve(
-          getFolderTestTargetDirectoryPath("strategies"),
-          "test-batch-2.js"
-        ),
+        resolve(getFolderTestTargetDirectoryPath("strategies"), "test-batch-2.js"),
         buildBatchJobStrategyTemplate("testBatch2", "type-1")
       )
       writeFileSync(
-        resolve(
-          getFolderTestTargetDirectoryPath("strategies"),
-          "test-batch-3.js"
-        ),
+        resolve(getFolderTestTargetDirectoryPath("strategies"), "test-batch-3.js"),
         buildBatchJobStrategyTemplate("testBatch3", "type-2")
       )
       writeFileSync(
@@ -204,28 +189,27 @@ describe("plugins loader", () => {
     })
 
     it("registers price selection strategy", () => {
-      const priceSelectionStrategy =
-        container.resolve("priceSelectionStrategy") as (...args: unknown[]) => any
+      const priceSelectionStrategy = container.resolve("priceSelectionStrategy") as (
+        ...args: unknown[]
+      ) => any
 
       expect(priceSelectionStrategy).toBeTruthy()
-      expect(priceSelectionStrategy.constructor.name).toBe(
-        "testPriceSelectionStrategy"
-      )
+      expect(priceSelectionStrategy.constructor.name).toBe("testPriceSelectionStrategy")
     })
 
     it("registers tax calculation strategy", () => {
-      const taxCalculationStrategy =
-        container.resolve("taxCalculationStrategy") as (...args: unknown[]) => any
+      const taxCalculationStrategy = container.resolve("taxCalculationStrategy") as (
+        ...args: unknown[]
+      ) => any
 
       expect(taxCalculationStrategy).toBeTruthy()
-      expect(taxCalculationStrategy.constructor.name).toBe(
-        "testTaxCalculationStrategy"
-      )
+      expect(taxCalculationStrategy.constructor.name).toBe("testTaxCalculationStrategy")
     })
 
     it("registers batch job strategies as single array", () => {
-      const batchJobStrategies =
-        container.resolve("batchJobStrategies") as (...args: unknown[]) => any
+      const batchJobStrategies = container.resolve("batchJobStrategies") as (
+        ...args: unknown[]
+      ) => any
 
       expect(batchJobStrategies).toBeTruthy()
       expect(Array.isArray(batchJobStrategies)).toBeTruthy()
@@ -233,21 +217,18 @@ describe("plugins loader", () => {
     })
 
     it("registers batch job strategies by type and only keep the last", () => {
-      const batchJobStrategy =
-        container.resolve("batchType_type-1") as (...args: unknown[]) => any
+      const batchJobStrategy = container.resolve("batchType_type-1") as (...args: unknown[]) => any
 
       expect(batchJobStrategy).toBeTruthy()
       expect(batchJobStrategy.constructor.name).toBe("testBatch2BatchStrategy")
       expect((batchJobStrategy.constructor as any).batchType).toBe("type-1")
-      expect((batchJobStrategy.constructor as any).identifier).toBe(
-        "testBatch2-identifier"
-      )
+      expect((batchJobStrategy.constructor as any).identifier).toBe("testBatch2-identifier")
     })
 
     it("registers batch job strategies by identifier", () => {
-      const batchJobStrategy = container.resolve(
-        "batch_testBatch3-identifier"
-      ) as (...args: unknown[]) => any
+      const batchJobStrategy = container.resolve("batch_testBatch3-identifier") as (
+        ...args: unknown[]
+      ) => any
 
       expect(batchJobStrategy).toBeTruthy()
       expect(Array.isArray(batchJobStrategy)).toBeFalsy()
@@ -255,7 +236,7 @@ describe("plugins loader", () => {
     })
   })
 
-  describe("registerServices", function () {
+  describe("registerServices", function() {
     beforeAll(() => {
       container.register("logger", asValue(Logger))
       mkdirSync(getFolderTestTargetDirectoryPath("services"), {
@@ -298,12 +279,9 @@ describe("plugins loader", () => {
 
       expect(err).toBeFalsy()
 
-      const testService: (...args: unknown[]) => any =
-        container.resolve("testService")
-      const test2Service: (...args: unknown[]) => any =
-        container.resolve("test2Service")
-      const test3Service: (...args: unknown[]) => any =
-        container.resolve("test3Service")
+      const testService: (...args: unknown[]) => any = container.resolve("testService")
+      const test2Service: (...args: unknown[]) => any = container.resolve("test2Service")
+      const test3Service: (...args: unknown[]) => any = container.resolve("test3Service")
 
       expect(testService).toBeTruthy()
       expect(testService.constructor.name).toBe("testService")

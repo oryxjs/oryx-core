@@ -1,5 +1,5 @@
 import { MedusaError } from "medusa-core-utils"
-import { OauthService } from "medusa-interfaces"
+import { OauthService } from "oryx-interfaces"
 
 class Oauth extends OauthService {
   static Events = {
@@ -85,10 +85,7 @@ class Oauth extends OauthService {
     return this.update(app.id, {
       data: authData,
     }).then((result) => {
-      this.eventBus_.emit(
-        `${Oauth.Events.TOKEN_GENERATED}.${appName}`,
-        authData
-      )
+      this.eventBus_.emit(`${Oauth.Events.TOKEN_GENERATED}.${appName}`, authData)
       return result
     })
   }
@@ -109,10 +106,7 @@ class Oauth extends OauthService {
     return this.update(app.id, {
       data: authData,
     }).then((result) => {
-      this.eventBus_.emit(
-        `${Oauth.Events.TOKEN_REFRESHED}.${appName}`,
-        authData
-      )
+      this.eventBus_.emit(`${Oauth.Events.TOKEN_REFRESHED}.${appName}`, authData)
       return result
     })
   }
